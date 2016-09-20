@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160920023414) do
+ActiveRecord::Schema.define(version: 20160920032749) do
 
   create_table "api_requests", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -18,6 +18,18 @@ ActiveRecord::Schema.define(version: 20160920023414) do
     t.text     "url",        null: false
     t.text     "response"
     t.index ["url"], name: "index_api_requests_on_url", unique: true
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string   "event_type"
+    t.string   "character"
+    t.datetime "when"
+    t.string   "title"
+    t.string   "description"
+    t.integer  "itemId"
+    t.integer  "achievementId"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "members", force: :cascade do |t|

@@ -14,9 +14,28 @@ class FrontController < ApplicationController
         update_attributes!(:character_class => c['class'], :race => c['race'], :gender => c['gender'], :level => c['level'], :rank => m['rank'], :spec => s['name'], :icon => s['icon'])
       end
     end
-    @members = Member.all
 
     #news
-    
+    url = Guild.new("barthilas", "Fist Weapon").news
+    ApiRequest.cache(url, lambda { 1.days.ago }) do
+      res = HTTParty.get(url)
+      body = JSON.parse(res.body)
+      puts "Updating News"
+      body['news'].each do |n|
+        a = n.fetch('achievement', {})
+        if a == {}
+          title = 'Looted Item'
+          description = ''
+        else
+          title = a['title']
+          description = a['description']
+        end
+        Event.find_or_initialize_by(:when => n['timestamp']).
+        update_attributes!(:character => n['character'], :event_type => n['type'], :title => title, :itemId => n.fetch('itemId', nil), :achievementId => a.fetch('id', nil))
+      end
+    end
+
+    @members = Member.order('rank ASC, name ASC').all
+    @events = Event.all
   end
 end

@@ -1,0 +1,28 @@
+.panel.panel-primary
+  .panel-heading
+    .row
+      .col-sm-12
+        h4.panel-title Members
+
+  .panel-body
+    table.table.table-hover
+      thead
+        tr
+          th Spec
+          th Class
+          th Name
+          th Race
+          th Gender
+          th Level
+          th Rank
+      tbody
+        - @members.each do |m|
+          tr
+            td
+              img(src=m.spec_url)
+            td = m.character_class
+            td = m.name
+            td = m.race
+            td = m.gender
+            td = m.level
+            td = m.rank

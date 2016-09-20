@@ -15,4 +15,12 @@ class Guild
     }.to_query
   end
 
+  def news
+    url = BASE_URL + "/" + @realm + "/" + @guildName + "?" + {
+      apikey: "ng6bgwrqguymnyh6uufcmds5f4nr3hde",
+      locale: "en_US",
+      fields: "news"
+    }.to_query
+  end
+
 end

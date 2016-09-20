@@ -1,0 +1,24 @@
+.panel.panel-primary
+  .panel-heading
+    .row
+      .col-sm-12
+        h4.panel-title Events
+
+  .panel-body
+    table.table.table-hover
+      thead
+        tr
+          th Who
+          th When
+          th Event
+          th Description
+      tbody
+        - @events.each do |e|
+          tr
+            td = e.character
+            td 
+              = time_ago_in_words(Date.today - 1)
+              | #{" ago"}
+              = e.when
+            td = e.title
+            td = e.description
