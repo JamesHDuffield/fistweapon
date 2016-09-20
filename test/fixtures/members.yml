@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  spec: MyString
+  class: 
+  name: MyString
+  race: 
+  gender: 
+  level: 
+  rank: 
+
+two:
+  spec: MyString
+  class: 
+  name: MyString
+  race: 
+  gender: 
+  level: 
+  rank: 

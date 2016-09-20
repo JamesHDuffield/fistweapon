@@ -16,13 +16,13 @@
           th Level
           th Rank
       tbody
-        - @members['members'].each do |m|
-          - c = m['character']
+        - @members.each do |m|
           tr
-            td = c.fetch('spec', {}).fetch('name', nil)
-            td = c['class']
-            td = c['name']
-            td = c['race']
-            td = c['gender']
-            td = c['level']
-            td = m['rank']
+            td
+              img(src=m.spec_url)
+            td = m.character_class
+            td = m.name
+            td = m.race
+            td = m.gender
+            td = m.level
+            td = m.rank

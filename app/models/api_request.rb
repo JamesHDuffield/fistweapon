@@ -2,13 +2,11 @@ class ApiRequest < ActiveRecord::Base
   validates :url, presence: true, uniqueness: true
 
   def self.cache(url, cache_policy)
-    r = find_or_initialize_by(url: url)
-    r.cache(cache_policy) do
-      res = HTTParty.get(url)
-      r.update_attributes(response: res.body)
+    find_or_initialize_by(url: url).cache(cache_policy) do
+      if block_given?
+        yield
+      end
     end
-    res = find_or_initialize_by(url: url)[:response]
-    return JSON.parse(res)
   end
 
   def cache(cache_policy)
@@ -17,5 +15,4 @@ class ApiRequest < ActiveRecord::Base
       yield
     end
   end
-
 end
