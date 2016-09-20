@@ -1,11 +1,12 @@
 class FrontController < ApplicationController
 
   def index
+    client = Battlenet.WOWClient
+    guild = client.guild({realm: 'barthilas', guild_name: 'Fist Weapon'})
+
     #members
-    url = Guild.new("barthilas", "Fist Weapon").members
-    ApiRequest.cache(url, lambda { 1.days.ago }) do
-      res = HTTParty.get(url)
-      body = JSON.parse(res.body)
+    ApiRequest.cache('guild_members', lambda { 1.days.ago }) do
+      body = guild.members
       puts "Updating Members"
       body['members'].each do |m|
         c = m.fetch('character', {})
@@ -16,12 +17,11 @@ class FrontController < ApplicationController
     end
 
     #news
-    url = Guild.new("barthilas", "Fist Weapon").news
-    ApiRequest.cache(url, lambda { 1.days.ago }) do
-      res = HTTParty.get(url)
-      body = JSON.parse(res.body)
+    ApiRequest.cache('guild_news', lambda { 0.hour.ago }) do
+      body = guild.members
       puts "Updating News"
       body['news'].each do |n|
+        puts n['timestamp']
         a = n.fetch('achievement', {})
         if a == {}
           title = 'Looted Item'
