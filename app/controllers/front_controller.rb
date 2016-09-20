@@ -1,8 +1,10 @@
 class FrontController < ApplicationController
 
   def index
-    g = Guild.new("barthilas", "Fist Weapon")
-    puts g.members
+    url = Guild.new("barthilas", "Fist Weapon").members
+    @members = ApiRequest.cache(url, lambda { 1.days.ago })
   end
+
+
 
 end

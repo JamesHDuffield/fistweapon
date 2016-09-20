@@ -33,6 +33,20 @@ gem 'jbuilder', '~> 2.5'
 #For api calls
 gem 'httparty'
 
+#Slim
+gem 'slim'
+# gem 'slim-rails' # this breaks with sprockets 4 apparently
+gem 'devise'
+gem 'devise_ldap_authenticatable'
+
+#bootstrap
+gem 'bootstrap-sass' #has to not be bowered for urls to work
+
+#caching
+gem 'api_cache'
+gem 'moneta'
+gem 'memcache-client'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

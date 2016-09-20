@@ -1,0 +1,28 @@
+.panel.panel-primary
+  .panel-heading
+    .row
+      .col-sm-12
+        h4.panel-title Members
+
+  .panel-body
+    table.table.table-hover
+      thead
+        tr
+          th Spec
+          th Class
+          th Name
+          th Race
+          th Gender
+          th Level
+          th Rank
+      tbody
+        - @members['members'].each do |m|
+          - c = m['character']
+          tr
+            td = c.fetch('spec', {}).fetch('name', nil)
+            td = c['class']
+            td = c['name']
+            td = c['race']
+            td = c['gender']
+            td = c['level']
+            td = m['rank']
