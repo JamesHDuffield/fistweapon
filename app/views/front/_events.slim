@@ -17,8 +17,14 @@
           tr
             td = e.character
             td 
-              = time_ago_in_words(Date.today - 1)
+              = time_ago_in_words(e.event_timestamp)
               | #{" ago"}
-              = e.when
             td = e.title
-            td = e.description
+            - if e.event_type == "itemLoot" or e.event_type =="itemCraft"
+              td
+                a(href="http://www.wowhead.com/item=#{e.itemId}")
+            - elsif e.event_type == "playerAchievement" or e.event_type="guildAchievement"
+              td 
+                a(href="http://wotlk.wowhead.com/achievement=#{e.achievementId}")
+            - else
+              td = e.event_type

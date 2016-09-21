@@ -17,21 +17,24 @@ class FrontController < ApplicationController
     end
 
     #news
-    ApiRequest.cache('guild_news', lambda { 0.hour.ago }) do
-      body = guild.members
+    ApiRequest.cache('guild_news', lambda { 1.hour.ago }) do
+      body = guild.news
       puts "Updating News"
       body['news'].each do |n|
-        puts n['timestamp']
+        event_timestamp = Time.at(n['timestamp'] / 1000)
         a = n.fetch('achievement', {})
-        if a == {}
-          title = 'Looted Item'
-          description = ''
-        else
-          title = a['title']
-          description = a['description']
+        case n['type']
+          when "itemLoot"
+            title = 'Looted Item'
+          when "itemCrafted"
+            title = 'Crafted Item'
+          when "guildAchievement"
+            title = 'Earned guild achievement'
+          else
+            title = 'Earned achievement'
         end
-        Event.find_or_initialize_by(:when => n['timestamp']).
-        update_attributes!(:character => n['character'], :event_type => n['type'], :title => title, :itemId => n.fetch('itemId', nil), :achievementId => a.fetch('id', nil))
+        Event.find_or_initialize_by(:event_timestamp => event_timestamp, :character => n['character']).
+        update_attributes!(:event_type => n['type'], :title => title, :itemId => n.fetch('itemId', nil), :achievementId => a.fetch('id', nil))
       end
     end
 
