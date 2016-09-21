@@ -13,7 +13,7 @@
           th Heroic
           th Mythic
       tbody
-        - Progression.where("raid == 'The Emerald Nightmare'").each do |r|
+        - Progression.where("raid = 'The Emerald Nightmare'").each do |r|
           tr
             td = r.boss
             td = r.normal_kills
@@ -35,7 +35,7 @@
           th Heroic
           th Mythic
       tbody
-        - Progression.where("raid == 'Hellfire Citadel'").each do |r|
+        - Progression.where("raid = 'Hellfire Citadel'").each do |r|
           tr
             td = r.boss
             td = r.normal_kills
