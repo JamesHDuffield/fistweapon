@@ -2,6 +2,15 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.panel-body {
+  background-color: #FFFFFF;
+}
+
+.c {
+  text-shadow: black 0px 0px 1px, black 0px 0px 1px, black 0px 0px 1px;
+  letter-spacing: 1px;
+}
+
 .c1 {
   color: #C79C6E;
 }
@@ -34,4 +43,8 @@
 }
 .c11 {
   color: #A330C9;
+}
+
+.wow-icon {
+  border: black solid 1px;
 }

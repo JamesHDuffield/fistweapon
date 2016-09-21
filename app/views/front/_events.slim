@@ -6,16 +6,11 @@
 
   .panel-body
     table.table.table-hover
-      thead
-        tr
-          th Who
-          th When
-          th Event
-          th Description
       tbody
         - @events.each do |e|
           tr
-            td = e.character
+            td
+              a(class="c c#{e.character_class}" href="#{e.ask_mr_robot}") = e.character
             td 
               = time_ago_in_words(e.event_timestamp)
               | #{" ago"}
