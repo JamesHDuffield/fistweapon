@@ -16,8 +16,8 @@
         - @members.each do |m|
           tr
             td
-              img(src=m.spec_url class="wow-icon")
+              img.wow-icon(src=m.spec_url)
             td
-              a(class="c c#{m.character_class}" href="#{m.ask_mr_robot}") = m.name
+              a.c(class="c#{m.character_class}" href="#{m.ask_mr_robot}") = m.name
             td = m.level
             td = m.rank_name
