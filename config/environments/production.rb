@@ -81,6 +81,11 @@ Rails.application.configure do
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
 
+  Battlenet.configure do |config|
+    config.api_key = 'ng6bgwrqguymnyh6uufcmds5f4nr3hde'
+    config.region  = :us
+  end
+
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end
