@@ -63,8 +63,8 @@ class FrontController < ApplicationController
       end
     end
 
-    @members = Member.order('level DESC, rank ASC, name ASC').where('level >= 10')
-    @events = Event.all
+    @members = Member.order('level DESC, rank ASC, name ASC').where('level >= 100')
+    @events = Event.take(200)
     @progression = Progression.where("raid == 'The Emerald Nightmare' OR raid =='Hellfire Citadel'")
   end
 end

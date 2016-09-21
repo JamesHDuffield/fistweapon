@@ -7,6 +7,7 @@
 }
 
 .c {
+  font-family: arial;
   text-shadow: black 0px 0px 1px, black 0px 0px 1px, black 0px 0px 1px;
   letter-spacing: 1px;
 }
@@ -47,4 +48,26 @@
 
 .wow-icon {
   border: black solid 1px;
+}
+
+.guild-name {
+    font-size: 30px;
+    font-weight: bold;
+    color: black;
+    line-height: 1.1em;
+    padding-bottom: 5px;
+}
+
+.guild-side {
+    font-size: 16px;
+    letter-spacing: normal;
+    color: #c09a67;
+}
+
+.guild-realm {
+    color: #b30000;
+    margin-top: 5px;
+    font-weight: normal;
+    letter-spacing: normal;
+    font-size: 16px;
 }
