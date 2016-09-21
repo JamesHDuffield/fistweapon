@@ -3,6 +3,7 @@ class FrontController < ApplicationController
   def index
     client = Battlenet.WOWClient
     guild = client.guild({realm: 'barthilas', guild_name: 'Fist Weapon'})
+    character = client.character({realm: 'barthilas', character_name: 'Spidr'})
 
     #members
     ApiRequest.cache('guild_members', lambda { 1.days.ago }) do
@@ -38,7 +39,32 @@ class FrontController < ApplicationController
       end
     end
 
+    #progression
+    ApiRequest.cache('guild_progression', lambda { 1.days.ago }) do
+      body = character.progression
+      prog = body.fetch('progression', {})
+      puts "Updating Progression"
+      prog.fetch('raids', []).each do |r|
+        r.fetch('bosses', []).each do |b|
+          puts b
+          Progression.find_or_initialize_by(:raid => r['name'], :boss_id => b['id']).
+          update_attributes!(
+            :boss => b['name'],
+            :lfr_kills => b.fetch('lfrKills', 0),
+            :lfr_timestamp => Time.at(b.fetch('lfrTimestamp', 0) / 1000),
+            :normal_kills => b.fetch('normalKills', 0),
+            :normal_timestamp => Time.at(b.fetch('normalTimestamp', 0) / 1000),
+            :heroic_kills => b.fetch('heroicKills', 0),
+            :heroic_timestamp => Time.at(b.fetch('heroicTimestamp', 0) / 1000),
+            :mythic_kills => b.fetch('mythicKills', 0),
+            :mythic_timestamp => Time.at(b.fetch('mythicTimestamp', 0) / 1000),
+          )
+        end
+      end
+    end
+
     @members = Member.order('level DESC, rank ASC, name ASC').where('level >= 10')
     @events = Event.all
+    @progression = Progression.where("raid == 'The Emerald Nightmare' OR raid =='Hellfire Citadel'")
   end
 end

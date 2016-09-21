@@ -1,0 +1,43 @@
+.panel.panel-primary
+  .panel-heading
+    .row
+      .col-sm-12
+        h4.panel-title The Emerald Dream
+
+  .panel-body
+    table.table.table-hover
+      thead
+        tr
+          th Boss
+          th Normal
+          th Heroic
+          th Mythic
+      tbody
+        - Progression.where("raid == 'The Emerald Nightmare'").each do |r|
+          tr
+            td = r.boss
+            td = r.normal_kills
+            td = r.heroic_kills
+            td = r.mythic_kills
+            
+.panel.panel-primary
+  .panel-heading
+    .row
+      .col-sm-12
+        h4.panel-title Hellfire Citadel
+
+  .panel-body
+    table.table.table-hover
+      thead
+        tr
+          th Boss
+          th Normal
+          th Heroic
+          th Mythic
+      tbody
+        - Progression.where("raid == 'Hellfire Citadel'").each do |r|
+          tr
+            td = r.boss
+            td = r.normal_kills
+            td = r.heroic_kills
+            td = r.mythic_kills
