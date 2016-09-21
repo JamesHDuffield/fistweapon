@@ -9,10 +9,7 @@
       thead
         tr
           th Spec
-          th Class
           th Name
-          th Race
-          th Gender
           th Level
           th Rank
       tbody
@@ -20,9 +17,7 @@
           tr
             td
               img(src=m.spec_url)
-            td = m.character_class
-            td = m.name
-            td = m.race
-            td = m.gender
+            td
+              span(class="c#{m.character_class}") = m.name
             td = m.level
             td = m.rank

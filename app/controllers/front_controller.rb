@@ -17,7 +17,7 @@ class FrontController < ApplicationController
     end
 
     #news
-    ApiRequest.cache('guild_news', lambda { 1.hour.ago }) do
+    ApiRequest.cache('guild_news', lambda { 5.minutes.ago }) do
       body = guild.news
       puts "Updating News"
       body['news'].each do |n|
@@ -38,7 +38,7 @@ class FrontController < ApplicationController
       end
     end
 
-    @members = Member.order('rank ASC, name ASC').all
+    @members = Member.order('level DESC, rank ASC, name ASC').where('level >= 10')
     @events = Event.all
   end
 end
