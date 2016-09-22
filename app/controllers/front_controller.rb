@@ -1,12 +1,13 @@
 class FrontController < ApplicationController
 
   def index
+    config = Rails.application.config
     client = Battlenet.WOWClient
-    guild = client.guild({realm: 'barthilas', guild_name: 'Fist Weapon'})
-    character = client.character({realm: 'barthilas', character_name: 'Spidr'})
+    guild = client.guild({realm: config.realm, guild_name: config.guild_name})
+    character = client.character({realm: config.realm, character_name: config.character_name})
 
     #members
-    ApiRequest.cache('guild_members', lambda { 1.days.ago }) do
+    ApiRequest.cache('guild_members', config.cache_members) do
       body = guild.members
       logger.info "Updating Members"
       body['members'].each do |m|
@@ -18,29 +19,33 @@ class FrontController < ApplicationController
     end
 
     #news
-    ApiRequest.cache('guild_news', lambda { 5.minutes.ago }) do
+    ApiRequest.cache('guild_news', config.cache_events) do
       body = guild.news
+      max_timestamp = Event.maximum(:event_timestamp) || 0
       logger.info "Updating News"
       body['news'].each do |n|
         event_timestamp = Time.at(n['timestamp'] / 1000)
-        a = n.fetch('achievement', {})
-        case n['type']
-          when "itemLoot"
-            title = 'Looted Item'
-          when "itemCrafted"
-            title = 'Crafted Item'
-          when "guildAchievement"
-            title = 'Earned guild achievement'
-          else
-            title = 'Earned achievement'
+        if event_timestamp > max_timestamp
+          a = n.fetch('achievement', {})
+          case n['type']
+            when "itemLoot"
+              title = 'Looted Item'
+            when "itemCrafted"
+              title = 'Crafted Item'
+            when "guildAchievement"
+              title = 'Earned guild achievement'
+            else
+              title = 'Earned achievement'
+          end
+          m = Member.find_by(name: n['character'])
+          Event.find_or_initialize_by(:event_timestamp => event_timestamp, :character => n['character']).
+          update_attributes!(:event_type => n['type'], :title => title, :itemId => n.fetch('itemId', nil), :achievementId => a.fetch('id', nil), :character_class => m ? m.character_class : 0)
         end
-        Event.find_or_initialize_by(:event_timestamp => event_timestamp, :character => n['character']).
-        update_attributes!(:event_type => n['type'], :title => title, :itemId => n.fetch('itemId', nil), :achievementId => a.fetch('id', nil))
       end
     end
 
     #progression
-    ApiRequest.cache('guild_progression', lambda { 1.days.ago }) do
+    ApiRequest.cache('guild_progression', config.cache_progression) do
       body = character.progression
       prog = body.fetch('progression', {})
       logger.info "Updating Progression"
@@ -64,8 +69,8 @@ class FrontController < ApplicationController
     end
 
     @members = Member.order('level DESC, rank ASC, name ASC').where('level >= ?', 100)
-    @events = Event.take(200)
-    @raids = Rails.application.config.raids
+    @events = Event.order('event_timestamp DESC').take(200)
+    @raids = config.raids
     @progression = Progression.where(:raid => @raids).group_by { |p| p.raid }
   end
 end

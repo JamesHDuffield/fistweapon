@@ -1,12 +1,8 @@
 class Event < ApplicationRecord
-  def character_class
-    me = Member.find_by name: self.character
-    return me.character_class
-  end
 
   def ask_mr_robot
-    me = Member.find_by name: self.character
-    return me.ask_mr_robot
+    config = Rails.application.config
+    "#{config.amr_url_base}/#{config.realm}/#{self.character}"
   end
 
 end

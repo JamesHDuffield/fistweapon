@@ -1,9 +1,12 @@
 class Member < ActiveRecord::Base
+
+
   def spec_url
+    config = Rails.application.config
     if self.icon != nil
-      return "http://media.blizzard.com/wow/icons/56/#{self.icon}.jpg"
+      return "#{config.media_url_base}/#{self.icon}.jpg"
     else
-      return "http://media.blizzard.com/wow/icons/56/Inv_misc_questionmark.jpg"
+      return "#{config.media_url_base}/Inv_misc_questionmark.jpg"
     end
   end
 
@@ -21,6 +24,7 @@ class Member < ActiveRecord::Base
   end
 
   def ask_mr_robot
-    "http://www.askmrrobot.com/wow/gear/us/barthilas/#{self.name}"
+    config = Rails.application.config
+    "#{config.amr_url_base}/#{config.realm}/#{self.name}"
   end
 end
