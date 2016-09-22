@@ -8,7 +8,7 @@ class FrontController < ApplicationController
     #members
     ApiRequest.cache('guild_members', lambda { 1.days.ago }) do
       body = guild.members
-      puts "Updating Members"
+      logger.info "Updating Members"
       body['members'].each do |m|
         c = m.fetch('character', {})
         s = c.fetch('spec', {})
@@ -20,7 +20,7 @@ class FrontController < ApplicationController
     #news
     ApiRequest.cache('guild_news', lambda { 5.minutes.ago }) do
       body = guild.news
-      puts "Updating News"
+      logger.info "Updating News"
       body['news'].each do |n|
         event_timestamp = Time.at(n['timestamp'] / 1000)
         a = n.fetch('achievement', {})
@@ -43,10 +43,10 @@ class FrontController < ApplicationController
     ApiRequest.cache('guild_progression', lambda { 1.days.ago }) do
       body = character.progression
       prog = body.fetch('progression', {})
-      puts "Updating Progression"
+      logger.info "Updating Progression"
       prog.fetch('raids', []).each do |r|
         r.fetch('bosses', []).each do |b|
-          puts b
+          logger.info b
           Progression.find_or_initialize_by(:raid => r['name'], :boss_id => b['id']).
           update_attributes!(
             :boss => b['name'],
