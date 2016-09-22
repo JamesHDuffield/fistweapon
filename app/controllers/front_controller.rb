@@ -7,7 +7,7 @@ class FrontController < ApplicationController
     character = client.character({realm: config.realm, character_name: config.character_name})
 
     #members
-    ApiRequest.cache('guild_members', config.cache_members) do
+    ApiRequest.cache(:guild_members, config.cache_members) do
       body = guild.members
       logger.info "Updating Members"
       body['members'].each do |m|
@@ -19,7 +19,7 @@ class FrontController < ApplicationController
     end
 
     #news
-    ApiRequest.cache('guild_news', config.cache_events) do
+    ApiRequest.cache(:guild_news, config.cache_events) do
       body = guild.news
       max_timestamp = Event.maximum(:event_timestamp) || 0
       logger.info "Updating News"
@@ -37,7 +37,7 @@ class FrontController < ApplicationController
             else
               title = 'Earned achievement'
           end
-          character_class = Member.find_by(name: 'n['character']').try(:character_class) || 0
+          character_class = Member.find_by(name: n['character']).try(:character_class) || 0
           Event.find_or_initialize_by(:event_timestamp => event_timestamp, :character => n['character']).
           update_attributes!(:event_type => n['type'], :title => title, :itemId => n.fetch('itemId', nil), :achievementId => a.fetch('id', nil), :character_class => character_class)
         end
@@ -45,7 +45,7 @@ class FrontController < ApplicationController
     end
 
     #progression
-    ApiRequest.cache('guild_progression', config.cache_progression) do
+    ApiRequest.cache(:guild_progression, config.cache_progression) do
       body = character.progression
       prog = body.fetch('progression', {})
       logger.info "Updating Progression"
