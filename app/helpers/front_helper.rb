@@ -8,4 +8,8 @@ module FrontHelper
       e.event_type
     end
   end
+
+  def render_log_link
+    content_tag(:a, 'View Logs', href: "https://www.warcraftlogs.com/guilds/usercalendar/197620")
+  end
 end

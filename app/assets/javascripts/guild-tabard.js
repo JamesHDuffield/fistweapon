@@ -65,7 +65,6 @@ function zeroFill(number, width, includeDecimal) {
  */
 
 function GuildTabard(id, tabard) {
-	console.log('Running guild tabard');
 	var self = this,
 		canvas = document.getElementById(id),
 		context = null,
