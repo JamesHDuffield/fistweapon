@@ -1,8 +1,13 @@
 .panel.panel-primary
   .panel-heading
     .row
-      .col-sm-12
+      .col-sm-6
         h4.panel-title Events
+      .col-sm-6
+        .pull-right
+          a(id='tgreen' onclick='toggle_greens();') Uncommons
+          | #{' | '}
+          a(id='tblue' onclick='toggle_blues();') Rares
 
   .panel-body
     table.table.table-hover
