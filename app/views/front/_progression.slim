@@ -1,43 +1,22 @@
-.panel.panel-primary
-  .panel-heading
-    .row
-      .col-sm-12
-        h4.panel-title The Emerald Dream
+- @raids.each do |r|
+  .panel.panel-primary
+    .panel-heading
+      .row
+        .col-sm-12
+          h4.panel-title = r
 
-  .panel-body
-    table.table.table-hover
-      thead
-        tr
-          th Boss
-          th Normal
-          th Heroic
-          th Mythic
-      tbody
-        - @nightmare.each do |r|
+    .panel-body
+      table.table.table-hover
+        thead
           tr
-            td = r.boss
-            td = r.normal_kills
-            td = r.heroic_kills
-            td = r.mythic_kills
-            
-.panel.panel-primary
-  .panel-heading
-    .row
-      .col-sm-12
-        h4.panel-title Hellfire Citadel
-
-  .panel-body
-    table.table.table-hover
-      thead
-        tr
-          th Boss
-          th Normal
-          th Heroic
-          th Mythic
-      tbody
-        - @hellfire.each do |r|
-          tr
-            td = r.boss
-            td = r.normal_kills
-            td = r.heroic_kills
-            td = r.mythic_kills
+            th Boss
+            th Normal
+            th Heroic
+            th Mythic
+        tbody
+          - @progression.fetch(r, []).each do |b|
+            tr
+              td = b.boss
+              td = b.normal_kills
+              td = b.heroic_kills
+              td = b.mythic_kills

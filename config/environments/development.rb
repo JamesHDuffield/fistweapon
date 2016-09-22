@@ -52,9 +52,4 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-  Battlenet.configure do |config|
-    config.api_key = 'ng6bgwrqguymnyh6uufcmds5f4nr3hde'
-    config.region  = :us
-  end
-
 end

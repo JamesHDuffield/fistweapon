@@ -65,8 +65,7 @@ class FrontController < ApplicationController
 
     @members = Member.order('level DESC, rank ASC, name ASC').where('level >= ?', 100)
     @events = Event.take(200)
-    @progression = Progression.where(:raid => ['The Emerald Nightmare', 'Hellfire Citadel')
-    @hellfire = @progression.select {|p| p.raid == 'Hellfire Citadel'}
-    @nightmare = @progression.select {|p| p.raid == 'The Emerald Nightmare'}
+    @raids = Rails.application.config.raids
+    @progression = Progression.where(:raid => @raids).group_by { |p| p.raid }
   end
 end

@@ -11,5 +11,14 @@ module Fistweapon
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+    Rails.application.configure do |config|
+      Battlenet.configure do |config|
+        config.api_key = 'ng6bgwrqguymnyh6uufcmds5f4nr3hde'
+        config.region  = :us
+      end
+
+      config.raids = ['The Emerald Nightmare', 'Hellfire Citadel']
+    end
+
   end
 end
