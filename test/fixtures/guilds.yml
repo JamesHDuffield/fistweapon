@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  realm: MyString
+  level: 1
+  side: 1
+  achievement_points: 1
+  icon: 1
+  icon_colour: MyString
+  icon_colour_id: 1
+  border: 1
+  border_colour: MyString
+  border_colour_id: 1
+  background_colour: MyString
+  background_colour_id: 1
+
+two:
+  name: MyString
+  realm: MyString
+  level: 1
+  side: 1
+  achievement_points: 1
+  icon: 1
+  icon_colour: MyString
+  icon_colour_id: 1
+  border: 1
+  border_colour: MyString
+  border_colour_id: 1
+  background_colour: MyString
+  background_colour_id: 1

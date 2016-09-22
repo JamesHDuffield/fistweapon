@@ -4,11 +4,12 @@
 
 
 $(document).ready(() ->
+  data = $('#guild-tabard').data()
   tabard = new GuildTabard('guild-tabard', {
     'ring': 'horde',
-    'bg': [ 0, 5 ],
-    'border': [ 5, 15 ],
-    'emblem': [ 122, 15 ]
+    'bg': [ 0, data.bg ],
+    'border': [ data.border, data.borderColour ],
+    'emblem': [ data.icon, data.iconColour ]
   })
 
   greens_hidden = false

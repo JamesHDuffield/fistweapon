@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160922024303) do
+ActiveRecord::Schema.define(version: 20160922070250) do
 
   create_table "api_requests", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -31,6 +31,24 @@ ActiveRecord::Schema.define(version: 20160922024303) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.integer  "character_class"
+  end
+
+  create_table "guilds", force: :cascade do |t|
+    t.string   "name"
+    t.string   "realm"
+    t.integer  "level"
+    t.integer  "side"
+    t.integer  "achievement_points"
+    t.integer  "icon"
+    t.string   "icon_colour"
+    t.integer  "icon_colour_id"
+    t.integer  "border"
+    t.string   "border_colour"
+    t.integer  "border_colour_id"
+    t.string   "background_colour"
+    t.integer  "background_colour_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "members", force: :cascade do |t|

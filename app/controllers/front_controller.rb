@@ -1,5 +1,10 @@
 class FrontController < ApplicationController
 
+  def reset_cache
+    ApiRequest.delete_all
+    redirect_to action: "index"
+  end
+
   def index
     config = Rails.application.config
     client = Battlenet.WOWClient
@@ -9,6 +14,24 @@ class FrontController < ApplicationController
     #members
     ApiRequest.cache(:guild_members, config.cache_members) do
       body = guild.members
+
+      logger.info "Updating Guild"
+      e = body['emblem']
+      Guild.find_or_initialize_by(:name => body['name'], :realm => body['realm']).
+      update_attributes!(
+        :level => body['level'],
+        :side => body['side'],
+        :achievement_points => body['achievementPoints'],
+        :icon => e['icon'],
+        :icon_colour => e['iconColor'],
+        :icon_colour_id => e['iconColorId'],
+        :border => e['border'],
+        :border_colour => e['borderColor'],
+        :border_colour_id => e['borderColorId'],
+        :background_colour => e['backgroundColor'],
+        :background_colour_id => e['backgroundColorId'],
+      )
+
       logger.info "Updating Members"
       body['members'].each do |m|
         c = m.fetch('character', {})
@@ -72,5 +95,6 @@ class FrontController < ApplicationController
     @events = Event.order('event_timestamp DESC').take(200)
     @raids = config.raids
     @progression = Progression.where(:raid => @raids).group_by { |p| p.raid }
+    @guild = Guild.find_by(name: config.guild_name)
   end
 end
