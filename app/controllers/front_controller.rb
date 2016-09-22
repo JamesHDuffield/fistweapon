@@ -37,9 +37,9 @@ class FrontController < ApplicationController
             else
               title = 'Earned achievement'
           end
-          m = Member.find_by(name: n['character'])
+          character_class = Member.find_by(name: 'n['character']').try(:character_class) || 0
           Event.find_or_initialize_by(:event_timestamp => event_timestamp, :character => n['character']).
-          update_attributes!(:event_type => n['type'], :title => title, :itemId => n.fetch('itemId', nil), :achievementId => a.fetch('id', nil), :character_class => m ? m.character_class : 0)
+          update_attributes!(:event_type => n['type'], :title => title, :itemId => n.fetch('itemId', nil), :achievementId => a.fetch('id', nil), :character_class => character_class)
         end
       end
     end
