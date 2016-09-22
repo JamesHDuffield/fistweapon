@@ -11,29 +11,19 @@ $(document).ready(() ->
     'emblem': [ 122, 15 ]
   })
 
-  greens_hidden = false
-  blues_hidden = false
-
-  toggle_greens = ->
-    greens_hidden = !greens_hidden
-    if greens_hidden
-      $('.q2').parent().parent().hide()
-      $('#tgreen').addClass 'striked'
+  toggle_item_filter = (event) ->
+    filter = $(event.target)
+    isHiddenNow = !filter.data('hidden')
+    filter.data('hidden', isHiddenNow)
+    rows = $(filter.data('hide-class')).closest('tr')
+    if isHiddenNow
+      rows.hide()
+      filter.addClass 'striked'
     else
-      $('.q2').parent().parent().show()
-      $('#tgreen').removeClass 'striked'
+      rows.show()
+      filter.removeClass 'striked'
     return false
 
-  toggle_blues = ->
-    blues_hidden = !blues_hidden
-    if blues_hidden
-      $('.q3').parent().parent().hide()
-      $('#tblue').addClass 'striked'
-    else
-      $('.q3').parent().parent().show()
-      $('#tblue').removeClass 'striked'
-    return false
-
-  $('#tgreen').click toggle_greens
-  $('#tblue').click toggle_blues
+  $('#tgreen').click toggle_item_filter
+  $('#tblue').click toggle_item_filter
 )
