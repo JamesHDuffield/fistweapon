@@ -6,11 +6,17 @@
   background-color: #FFFFFF;
 }
 
-.panel-heading a,
-.panel-heading a:hover {
-  color: white;
-  font-size: 12px;
+.panel-heading {
+  a, a:hover, a:visited {
+    color: white;
+    font-size: 12px;
+
+    &.striked {
+      text-decoration: line-through;
+    }
+  }
 }
+
 .c {
   font-family: arial;
   text-shadow: black 0px 0px 1px, black 0px 0px 1px, black 0px 0px 1px;
