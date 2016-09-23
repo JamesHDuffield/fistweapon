@@ -69,17 +69,23 @@
     font-weight: bold;
     color: black;
     line-height: 1.1em;
-    padding-bottom: 5px;
 }
 
 .guild-side {
     font-size: 16px;
     letter-spacing: normal;
-    color: #c09a67;
+}
+
+.horde {
+  color: #b30000;
+}
+
+.alliance {
+  color: #0078ff;
 }
 
 .guild-realm {
-    color: #b30000;
+    color: #c09a67;
     margin-top: 5px;
     font-weight: normal;
     letter-spacing: normal;
