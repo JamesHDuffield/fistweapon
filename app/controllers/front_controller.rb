@@ -2,6 +2,9 @@ class FrontController < ApplicationController
 
   def reset_cache
     ApiRequest.delete_all
+    Member.delete_all
+    Event.delete_all
+    Progression.delete_all
     redirect_to action: "index"
   end
 
