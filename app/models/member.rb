@@ -6,7 +6,7 @@ class Member < ActiveRecord::Base
     if self.icon != nil
       return "#{config.media_url_base}/#{self.icon}.jpg"
     else
-      return "#{config.media_url_base}/Inv_misc_questionmark.jpg"
+      return "/Inv_misc_questionmark.jpg"
     end
   end
 
