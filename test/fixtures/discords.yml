@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  discord_timestamp: 2016-09-23 17:39:36
+  pinned: false
+  content: MyString
+  message_id: 1
+  channel_id: 1
+  author: MyString
+
+two:
+  discord_timestamp: 2016-09-23 17:39:36
+  pinned: false
+  content: MyString
+  message_id: 1
+  channel_id: 1
+  author: MyString

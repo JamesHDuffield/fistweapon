@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160922070250) do
+ActiveRecord::Schema.define(version: 20160926002414) do
 
   create_table "api_requests", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -18,6 +18,17 @@ ActiveRecord::Schema.define(version: 20160922070250) do
     t.text     "url",        null: false
     t.text     "response"
     t.index ["url"], name: "index_api_requests_on_url", unique: true
+  end
+
+  create_table "discords", force: :cascade do |t|
+    t.datetime "discord_timestamp"
+    t.boolean  "pinned"
+    t.string   "content"
+    t.integer  "message_id",        limit: 8
+    t.bigint   "channel_id"
+    t.string   "author"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "events", force: :cascade do |t|

@@ -91,3 +91,19 @@
     letter-spacing: normal;
     font-size: 16px;
 }
+
+.carousel-control {
+  width: 40px !important;
+  color: #AAA !important;
+  background-image: none !important;
+}
+
+.carousel {
+  margin-bottom: 30px;
+}
+
+.carousel-inner > .item {
+  padding-left: 80px;
+  padding-right: 80px;
+  text-align: left;
+}
