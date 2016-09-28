@@ -15,6 +15,8 @@ class FrontController < ApplicationController
       Discord.find_or_initialize_by(:message_id => m['id'], :channel_id => m['channel_id']).
       update_attributes!(:content => m['content'], :author => m['author']['username'], :discord_timestamp => m['timestamp'], :pinned => m['pinned'])
     end
+  rescue Exception => e
+    logger.error("Discord update error: #{e.message}")
   end
 
   def members(guild)
@@ -40,6 +42,8 @@ class FrontController < ApplicationController
       Member.find_or_initialize_by(:name => c['name']).
       update_attributes!(:character_class => c['class'], :race => c['race'], :gender => c['gender'], :level => c['level'], :rank => m['rank'], :spec => s['name'], :icon => s['icon'])
     end
+  rescue Exception => e
+    logger.error("Guild update error: #{e.message}")
   end
 
   def events(guild)
@@ -64,6 +68,8 @@ class FrontController < ApplicationController
         update_attributes!(:event_type => n['type'], :title => title, :itemId => n.fetch('itemId', nil), :achievementId => a.fetch('id', nil), :character_class => character_class)
       end
     end
+  rescue Exception => e
+    logger.error("Event update error: #{e.message}")
   end
 
   def progression(character)
@@ -71,7 +77,6 @@ class FrontController < ApplicationController
     prog = body.fetch('progression', {})
     prog.fetch('raids', []).each do |r|
       r.fetch('bosses', []).each do |b|
-        logger.info b
         Progression.find_or_initialize_by(:raid => r['name'], :boss_id => b['id']).
         update_attributes!(
           :boss => b['name'],
@@ -86,6 +91,8 @@ class FrontController < ApplicationController
         )
       end
     end
+  rescue Exception => e
+    logger.error("Progression update error: #{e.message}")
   end
 
   def index

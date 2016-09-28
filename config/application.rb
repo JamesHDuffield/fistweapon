@@ -13,25 +13,25 @@ module Fistweapon
     # -- all .rb files in that directory are automatically loaded.
 
     Battlenet.configure do |config|
-      config.api_key = 'ng6bgwrqguymnyh6uufcmds5f4nr3hde'
-      config.region  = :us
+      config.api_key = ENV['BNET_API_KEY']
+      config.region = ENV['BNET_REGION'].to_sym
     end
 
     Rails.application.configure do
       config.after_initialize do
-        config.realm = 'barthilas'
-        config.guild_name = 'Fist Weapon'
-        config.character_name = 'Spidr' #Used for progression lookup (use guild leader generally)
-        config.raids = ['The Emerald Nightmare', 'Hellfire Citadel']
+        config.realm = ENV['WOW_REALM']
+        config.guild_name = ENV['WOW_GUILD']
+        config.character_name = ENV['WOW_CHARACTER_NAME'] #Used for progression lookup (use guild leader generally)
+        config.raids = ENV['WOW_RAIDS'].split(",")
         config.amr_url_base = 'http://www.askmrrobot.com/wow/gear/us'
         config.media_url_base = 'http://media.blizzard.com/wow/icons/56'
         config.cache_members = lambda { 1.days.ago }
         config.cache_events = lambda { 5.minutes.ago }
-        config.cache_discord = lambda { 1.minutes.ago }
+        config.cache_discord = lambda { 0.minutes.ago }
         config.cache_progression = lambda { 1.days.ago }
 
-        config.discord_channel_id = 228766394290798592
-        config.discord_key = 'Bot MjI4NzY2OTYzMDM4NTUyMDY0.CsZoGQ.KolNZnvu4HlxN781lRuAy1a4qDI'
+        config.discord_channel_id = ENV['DISCORD_CHANNEL_ID']
+        config.discord_key = ENV['DISCORD_KEY']
       end
     end
 
