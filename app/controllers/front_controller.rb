@@ -5,6 +5,7 @@ class FrontController < ApplicationController
     Member.delete_all
     Event.delete_all
     Progression.delete_all
+    Discord.delete_all
     redirect_to action: "index"
   end
 

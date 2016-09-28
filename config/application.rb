@@ -27,7 +27,7 @@ module Fistweapon
         config.media_url_base = 'http://media.blizzard.com/wow/icons/56'
         config.cache_members = lambda { 1.days.ago }
         config.cache_events = lambda { 5.minutes.ago }
-        config.cache_discord = lambda { 0.minutes.ago }
+        config.cache_discord = lambda { 1.minutes.ago }
         config.cache_progression = lambda { 1.days.ago }
 
         config.discord_channel_id = ENV['DISCORD_CHANNEL_ID']
