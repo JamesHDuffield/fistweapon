@@ -7,13 +7,21 @@ services:
 env:
   matrix:
   - RAILS_ENV=test
+  - secure: gLbY/sDRcvgEpzWRRWdPkenCOtXHZUwx7bJlyX2cxR5x4/zk5lXXb1+oESOImur2LuxLavqqjW00kIoUzlfcreQ6LUkwuBRROT/KAgB9or2Cv6dpzI4ITW6kX+yN5VofoGgOJv9IRSN78RQukK9uI0Fgea3BsGRGz79MzlPxZ4l370qGqrCPoqyHHv4KOAIn8jceJldzxd8DrQS9vt1qh635VzpKktXvxVdLYHzRLt0WOBtIFqYMgL8gyZzzCOyCufspm/cI7RG7jKJDs3ynRn+uhlpx7Wrh85qvZ6olWH1Sf0Tkf5L8d31xz5ElXLzKIjoWmbfkqwan5uEJ84igAhI4sCPb5+Sm8qhZKLks+45lT64hWC24OdwUU02U9Iknl9aCpriIzm6SKqRgWJ9eSV/faPuDkAoV+I1GTFYutdcFMmDtaOm/qNtCYd7y716GC+3EdTy9Dt6/lZ0XzrYOKLTfC9/JERPcbKjw4iSeLxAZXJ/JbKkh1po7YUmaxJtRAOi7975AMf4jVb0treHez8bIahYfUrWdCGa7tZ6uubMK4jqvUI9qvl7shcf6c5VkZxQ/gjdK37w9rKW8rlok0SkSMwgAy+T7X6yAdmjR6DAJor0QkLhyFAaxWPXHRTCOIIarAXzDA2uQxB/ApTSrRATtO+Paew7kfj5eBvtVq40=
+  - secure: P46vKGFxppJN85dSEZpimORRuK4TjeO8rj8cHNqwu9Rk+G/QFuajBfFhNVnTTAFocWFziXft67nlwMAQvsHKKw4NWmVAfa2rQ7wVmgMOHt7OWbjTcR+C+YaOUmUDII9096inv41OQJsZi1669tRk7DNYnjTkev2mHT9prrfpG+GevFv/bFBEc1rrRpR678Vr4Mtv49ZKoHP5udJvQKLAZC5uB3EIa+s7UkisFXbL1uJzDkOVpTVJXaA+oecWqhHb0L8Gnp4q+nEMeckmPkYfgKtvKG1acuNyDEjDKPnfGbLawjvPyUC+bRY5Hou3wHPUxxjCXnMjfBRmgGr1UDMLoUDSSfc6XNxINfmPSt/hi8doxvG+Ay/f+yjK2MFNlO4AZmmLkqDYBhoUZ4q2tFdcQJMosbDMdKCflP+mSPWv0bdARtfhS2MtnB8KZI8dA8YdWrwd0DNoUue4IL8OjZrPnh8euCUykoBfGKGOx+hmV68RrN4Ws0qg9KiRp90MTCtG0KNMX130fEI+BZfqC2h94fT9hDJyh2XjlIl/dKap3w6gu6OlQCQyrE6/zt4Go3B1PajQ+iwtpK6K0/US+auFCCJZSJL9tIiA3J1YI+Ti0qKEtWc05FizJcJsB126/B/MSEHSNf9o0EltFhFb6BB6UIyDqf+XOG/lI7wxFy2aMwQ=
+  - DISCORD_CHANNEL_ID=226638929049288704
+  - BNET_REGION=us
+  - WOW_REALM=barthilas
+  - WOW_GUILD="Fist Weapon"
+  - WOW_CHARACTER_NAME=Spidr
+  - WOW_RAIDS="The Emerald Nightmare,Hellfire Citadel,Firelands"
+
 before_install:
 - cp -f config/travis/database.yml config/database.yml
 install:
-  # Bundler downgrade should be removed when the issue is fixed upstream
-  - gem uninstall bundler -x
-  - gem install bundler -v "=1.10.6"
-  - bundle update
+- gem uninstall bundler -x
+- gem install bundler -v "=1.10.6"
+- bundle update
 before_script:
 - bundle exec rake db:create db:schema:load
 deploy:
