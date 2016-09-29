@@ -16,8 +16,6 @@ install:
   - bundle update
 before_script:
 - bundle exec rake db:create db:schema:load
-script:
-- bundle exec rspec spec
 deploy:
   provider: heroku
   on: master
