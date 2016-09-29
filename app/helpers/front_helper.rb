@@ -13,10 +13,6 @@ module FrontHelper
     content_tag(:a, 'View Logs', href: "https://www.warcraftlogs.com/guilds/usercalendar/197620")
   end
 
-  def guild_name
-    Rails.application.config.guild_name
-  end
-
   def realm
     Rails.application.config.realm
   end

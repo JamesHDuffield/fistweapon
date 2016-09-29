@@ -1,0 +1,29 @@
+= form_for :report do |f|
+  .panel.panel-primary
+    .panel-heading
+      .row
+        .col-sm-10
+          h4.panel-title Create Reports
+        .col-sm-2
+          button.btn.btn-default.btn-xs type="submit" Save
+    .panel-body
+      .row
+        .col-md-2
+          = f.label :character_name
+        .col-md-10
+          = f.text_field :character_name, :id => 'post_member_name', :class => 'form-control', :placeholder => 'Character Name'
+      .row
+        .col-md-2
+          = f.label :title
+        .col-md-10
+          = f.text_field :title, :class => 'form-control', :placeholder => 'Title of write up'
+      .row
+        .col-md-2
+          = f.label :content
+        .col-md-10
+          = f.text_area :content, :class => 'form-control',  :placeholder => 'What happened'
+      .row
+        .col-md-2
+          strong Dragon Kill Points (DKP)
+        .col-md-10
+          = f.number_field :dkp, :class => 'form-control', :placeholder => 'e.g. 10 or -50'

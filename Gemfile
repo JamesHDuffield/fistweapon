@@ -30,6 +30,9 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+#For autocomplete
+gem 'jquery-ui-rails'
+
 #Slim
 gem 'slim'
 # gem 'slim-rails' # this breaks with sprockets 4 apparently

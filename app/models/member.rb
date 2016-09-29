@@ -1,5 +1,16 @@
 class Member < ActiveRecord::Base
+  def member_name=(name)
+    user = Member.find_by_name(name)
+    if user
+      self.member_id = member.id
+    else
+      errors[:member_name] << "Invalid name entered"
+    end
+  end
 
+  def member_name
+    Member.find(member_id).name if member_id
+  end
 
   def spec_url
     config = Rails.application.config

@@ -40,3 +40,8 @@ body {
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
+
+.panel-heading .col-sm-1,
+.panel-heading .col-sm-2{
+  text-align: right;
+}

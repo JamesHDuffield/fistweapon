@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  content: MyText
+  character: MyString
+  posted: 2016-09-29 12:24:01
+  dkp: 1
+
+two:
+  title: MyString
+  content: MyText
+  character: MyString
+  posted: 2016-09-29 12:24:01
+  dkp: 1

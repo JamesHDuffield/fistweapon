@@ -5,12 +5,13 @@
 
 $(document).ready(() ->
   data = $('#guild-tabard').data()
-  tabard = new GuildTabard('guild-tabard', {
-    'ring': 'horde',
-    'bg': [ 0, data.bg ],
-    'border': [ data.border, data.borderColour ],
-    'emblem': [ data.icon, data.iconColour ]
-  })
+  if data
+    tabard = new GuildTabard('guild-tabard', {
+      'ring': 'horde',
+      'bg': [ 0, data.bg ],
+      'border': [ data.border, data.borderColour ],
+      'emblem': [ data.icon, data.iconColour ]
+    })
 
   toggle_item_filter = (event) ->
     filter = $(event.target)
