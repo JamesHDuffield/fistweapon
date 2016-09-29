@@ -9,6 +9,10 @@ env:
   - RAILS_ENV=test
 before_install:
 - cp -f config/travis/database.yml config/database.yml
+install:
+  # Bundler downgrade should be removed when the issue is fixed upstream
+  - gem uninstall bundler -x
+  - gem install bundler -v "=1.10.6"
 before_script:
 - bundle exec rake db:create db:schema:load
 script:
