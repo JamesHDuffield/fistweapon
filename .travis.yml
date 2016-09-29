@@ -1,0 +1,23 @@
+language: ruby
+cache: bundler
+rvm:
+- 2.2.2
+services:
+- postgresql
+env:
+  matrix:
+  - RAILS_ENV=test
+before_install:
+- cp -f config/travis/database.yml config/database.yml
+before_script:
+- bundle exec rake db:create db:schema:load
+script:
+- bundle exec rspec spec
+deploy:
+  provider: heroku
+  on: master
+  app: fistweapon
+  run:
+  - rake db:migrate
+  api_key:
+    secure: iLDCNvPQKgc4t4AOIgHpe1pIUCu6zHjhnd8QFiVWSIMKhz2rIxgKZXvrASRm/otYlbwOm8P/CThXvDU5zQc7rfZ7vmKVIMlNnzffXbSzMf7ABmXyI7Y2+8vK0lK4X1w1ViBrGT03yD4PBSx9VcybrYN/cCb8EejBVtQFcJMvY64noPjZhbEZyU0B272QMDwkAoGK3pQ7D78DCMEQSxrvOv4iQmgfLijvn0Qw8gMDApJUs2zfZHHZeX3smfynlp3q4UfVQJBqjSrIgNP7VJm+Vml+J1SlFCN9ICtFDj4snk6/IJE6YWzOMpt47mm+U3u2qdAX4AOrZ9pxviIXEC6pr+avyDzMHXOxW6X7df6X65wnnBgez08e2FOowAOG35yAxnjT0ZtBrvsi17CKOspOoINgXEfNxgDfyjy8S6nFv9GClwTZV9GxGOsziw5FYzA+hNJCUkYb6espzSwlp8b44Rno2HBvxw+ZR5HN5gDKijw0zwlWHIKzGeyScFPlM2TD4zji5VtCGD6xp+U7HTDs3uVggCb0/anCE19Wu+CuRF3foSSNTpHtZe5lJp1ukeOishV1DPeFWUIYt9Lfvor/qKOA8QvzzvrVMJI/pkELoksBgZd6c+VquVHG16k9rZlMS6rL/RHIwEn4P7n6q39ci2UL+Kqwdo6MM1H+Tpx2l+0=
