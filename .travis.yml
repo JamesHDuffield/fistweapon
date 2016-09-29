@@ -16,6 +16,8 @@ install:
   - bundle update
 before_script:
 - bundle exec rake db:create db:schema:load
+before_deploy:
+- git stash --all
 deploy:
   provider: heroku
   on: master
