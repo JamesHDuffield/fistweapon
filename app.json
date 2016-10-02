@@ -1,0 +1,6 @@
+{
+  "name": "WoW Guild Website",
+  "description": "A World of Warcraft 1-click website",
+  "repository": "https://github.com/JamesHDuffield/fistweapon",
+  "keywords": ["rails", "dynamic", "wow"]
+}
