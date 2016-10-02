@@ -11,7 +11,7 @@
         .col-md-2
           = f.label :character_name
         .col-md-10
-          = f.text_field :character_name, :id => 'post_member_name', :class => 'form-control', :placeholder => 'Character Name'
+          = f.collection_select :character, @members, :name, :name, {}, {:class => 'form-control'}
       .row
         .col-md-2
           = f.label :title

@@ -22,3 +22,4 @@
 ENV.bat
 /.vagrant
 /cookbooks
+config/local_env.yml
