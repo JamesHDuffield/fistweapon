@@ -1,4 +1,4 @@
-= form_for :report do |f|
+= form_for @report do |f|
   .panel.panel-primary
     .panel-heading
       .row
@@ -9,7 +9,7 @@
     .panel-body
       .row
         .col-md-2
-          = f.label :character_name
+          = f.label :character
         .col-md-10
           = f.collection_select :character, @members, :name, :name, {}, {:class => 'form-control'}
       .row

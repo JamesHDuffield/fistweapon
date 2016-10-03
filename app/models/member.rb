@@ -25,4 +25,8 @@ class Member < ActiveRecord::Base
     config = Rails.application.config
     "#{config.amr_url_base}/#{config.realm}/#{self.name}"
   end
+
+  def dkp
+    Report.where(character: self.name).sum(:dkp)
+  end
 end

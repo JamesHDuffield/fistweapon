@@ -2,24 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.panel-body {
-  background-color: #FFFFFF;
-}
-
-.panel-heading {
-
-  background-image: image-url('brushed-alum.png');
-
-  a, a:hover, a:visited, a:focus {
-    color: white;
-    font-size: 12px;
-
-    &.striked {
-      text-decoration: line-through;
-    }
-  }
-}
-
 .c {
   font-family: arial;
   text-shadow: black 0px 0px 1px, black 0px 0px 1px, black 0px 0px 1px;
@@ -74,6 +56,17 @@
 .guild-side {
     font-size: 16px;
     letter-spacing: normal;
+}
+
+.gradient{
+  background-image: -webkit-gradient(
+	linear,
+	left top, left bottom,
+	from(rgba(0, 0, 0, 1)),
+	to(rgba(0, 0, 0, 0.5))
+	);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 
 .horde {

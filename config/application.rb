@@ -45,6 +45,9 @@ module Fistweapon
 
         config.discord_channel_id = get_env('DISCORD_CHANNEL_ID')
         config.discord_key = get_env('DISCORD_KEY')
+
+        config.report_username = get_env('REPORT_USERNAME')
+        config.report_password = get_env('REPORT_PASSWORD')
       end
     end
 

@@ -29,18 +29,32 @@ body {
   border-color: #0f1415;
 }
 
-.gradient{
-  background-image: -webkit-gradient(
-	linear,
-	left top, left bottom,
-	from(rgba(0, 0, 0, 1)),
-	to(rgba(0, 0, 0, 0.5))
-	);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
+.panel-body {
+  background-color: #FFFFFF;
+
+  .form-control {
+    margin-bottom: 5px;
+  }
 }
 
-.panel-heading .col-sm-1,
-.panel-heading .col-sm-2{
-  text-align: right;
+.panel-heading {
+
+  background-image: image-url('brushed-alum.png');
+
+  a, a:hover, a:visited, a:focus {
+    color: white;
+    font-size: 12px;
+
+    &.striked {
+      text-decoration: line-through;
+    }
+  }
+
+  .col-sm-1, .col-sm-2 {
+    text-align: right;
+  }
+
+  ul.dropdown-menu a {
+    color: #000;
+  }
 }
