@@ -23,6 +23,9 @@ module Fistweapon
       YAML.load(File.open(env_file)).each do |key, value|
         ENV[key.to_s] = value
       end if File.exists?(env_file)
+
+      config.report_username = get_env('REPORT_USERNAME')
+      config.report_password = get_env('REPORT_PASSWORD')
     end
 
     Battlenet.configure do |config|
@@ -45,9 +48,6 @@ module Fistweapon
 
         config.discord_channel_id = get_env('DISCORD_CHANNEL_ID')
         config.discord_key = get_env('DISCORD_KEY')
-
-        config.report_username = get_env('REPORT_USERNAME')
-        config.report_password = get_env('REPORT_PASSWORD')
       end
     end
 
