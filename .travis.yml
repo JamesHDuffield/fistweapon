@@ -14,6 +14,8 @@ env:
     - WOW_GUILD="Fist Weapon"
     - WOW_CHARACTER_NAME=Spidr
     - WOW_RAIDS="The Emerald Nightmare,Hellfire Citadel,Firelands"
+    - REPORT_USERNAME="yavo"
+    - REPORT_PASSWORD="EnterPasswordHere"
   matrix:
     - RAILS_ENV=test
 
