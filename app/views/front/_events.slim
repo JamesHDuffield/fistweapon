@@ -16,8 +16,6 @@
           tr
             td
               a(class="c c#{e.character_class}" href="#{e.ask_mr_robot}") = e.character
-            td 
-              => time_ago_in_words(e.event_timestamp)
-              | ago
+            td = display_time(e.event_timestamp)
             td = e.title
             td = render_type(e)

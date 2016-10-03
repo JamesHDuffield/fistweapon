@@ -28,12 +28,18 @@ module FrontHelper
 
   def render_label(member)
     c = member.reports_count
-    if c > 0
-      if member.reports_new
-        link_to content_tag(:span, c, class: "label label-info"), member
-      else
-        link_to content_tag(:span, c, class: "label label-default"), member
-      end
+    if c > 0 && member.reports_new
+      link_to content_tag(:span, c, class: "label label-info"), member
+    else
+      link_to content_tag(:span, c, class: "label label-default"), member
+    end
+  end
+
+  def display_time(time)
+    if time <= Time.now
+      "#{time_ago_in_words(time)} ago"
+    else
+      "#{time_ago_in_words(time)} from now"
     end
   end
 
