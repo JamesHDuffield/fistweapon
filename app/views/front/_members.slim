@@ -12,6 +12,7 @@
           th Name
           th Level
           th Rank
+          th YR
       tbody
         - @members.each do |m|
           tr
@@ -21,3 +22,4 @@
               a.c(class="c#{m.character_class}" href="#{m.ask_mr_robot}") = m.name
             td = m.level
             td = m.rank_name
+            td = render_label(m)

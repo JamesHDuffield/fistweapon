@@ -29,4 +29,13 @@ class Member < ActiveRecord::Base
   def dkp
     Report.where(character: self.name).sum(:dkp)
   end
+
+  def reports_count
+    Report.where(character: self.name).count
+  end
+
+  def reports_new
+    Time.now - Report.where(character: self.name).maximum(:posted) < 2.day
+  end
+
 end
