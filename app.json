@@ -2,5 +2,15 @@
   "name": "WoW Guild Website",
   "description": "A World of Warcraft 1-click website",
   "repository": "https://github.com/JamesHDuffield/fistweapon",
-  "keywords": ["rails", "dynamic", "wow"]
+  "keywords": ["rails", "dynamic", "wow"],
+  "env": {
+    "DISCORD_CHANNEL_ID": "0",
+    "DISCORD_KEY": "Bot EnterBotKeyHere",
+    "BNET_API_KEY": "EnterBnetApiKeyHere",
+    "BNET_REGION": "us",
+    "WOW_REALM": "barthilas",
+    "WOW_GUILD": "Fist Weapon",
+    "WOW_CHARACTER_NAME": "Spidr",
+    "WOW_RAIDS": "The Emerald Nightmare"
+  }
 }
