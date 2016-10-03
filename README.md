@@ -1,4 +1,4 @@
-# README [![Build Status](https://travis-ci.org/JamesHDuffield/fistweapon.svg?branch=master)](https://travis-ci.org/JamesHDuffield/fistweapon)
+# Fist Weapon - WoW Guild Website Builder [![Build Status](https://travis-ci.org/JamesHDuffield/fistweapon.svg?branch=master)](https://travis-ci.org/JamesHDuffield/fistweapon)
 
 This project is designed to create a moderation light World of Warcraft guild website. Information about your guild is loaded from battle.net through api calls and news is loaded from your discord channel to create a dynamic site that takes no maintenance!
 
