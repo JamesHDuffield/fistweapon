@@ -68,7 +68,7 @@ function GuildTabard(id, tabard) {
 	var self = this,
 		canvas = document.getElementById(id),
 		context = null,
-		_path = window.location.href + '/tabard/',
+		_path = 'https://s3-us-west-2.amazonaws.com/media.fistweapon.net/', //Points to custom s3 bucket for images
 		_width = canvas.width,
 		_height = canvas.height,
 		_src = [],
@@ -162,8 +162,8 @@ function GuildTabard(id, tabard) {
 		var _oldCanvas = new Image(),
 			_newCanvas = new Image();
 
+		_img[index].crossOrigin = 'anonymous';
 		_img[index].src = _src[index];
-
 		_img[index].onload = function() {
 			_oldCanvas.src = canvas.toDataURL('image/png');
 		};
@@ -176,7 +176,6 @@ function GuildTabard(id, tabard) {
 			if (typeof _color[index] !== 'undefined' && _color[index] !== null) {
 				_colorize(_color[index][0], _color[index][1], _color[index][2]);
 			}
-
 			_newCanvas.src = canvas.toDataURL('image/png');
 			context.drawImage(_oldCanvas, 0, 0, _width, _height);
 		};

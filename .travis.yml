@@ -16,6 +16,7 @@ env:
     - WOW_RAIDS="The Emerald Nightmare,Hellfire Citadel,Firelands"
     - REPORT_USERNAME="yavo"
     - REPORT_PASSWORD="EnterPasswordHere"
+    - GOOGLE_ANALYTICS_TID=null
   matrix:
     - RAILS_ENV=test
 

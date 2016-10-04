@@ -42,9 +42,10 @@ module Fistweapon
         config.amr_url_base = 'http://www.askmrrobot.com/wow/gear/us'
         config.media_url_base = 'http://media.blizzard.com/wow/icons/56'
         config.cache_members = lambda { 1.days.ago }
-        config.cache_events = lambda { 0.minutes.ago }
-        config.cache_discord = lambda { 1.minutes.ago }
+        config.cache_events = lambda { 5.minutes.ago }
+        config.cache_discord = lambda { 5.minutes.ago }
         config.cache_progression = lambda { 1.days.ago }
+        config.google_analytics_tracking_ID = ENV['GOOGLE_ANALYTICS_TID']
 
         config.event_max_items = 200
         config.member_min_level = 110

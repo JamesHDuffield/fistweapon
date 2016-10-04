@@ -13,6 +13,7 @@
     "WOW_CHARACTER_NAME": "Spidr",
     "WOW_RAIDS": "The Emerald Nightmare",
     "REPORT_USERNAME": "yavo",
-    "REPORT_PASSWORD": "EnterPasswordHere"
+    "REPORT_PASSWORD": "EnterPasswordHere",
+    "GOOGLE_ANALYTICS_TID": {"required": false}
   }
 }
