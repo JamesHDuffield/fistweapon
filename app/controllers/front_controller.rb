@@ -37,17 +37,21 @@ class FrontController < ApplicationController
       progression(character)
     end
 
-    @members = Member.order('level DESC, rank ASC, name ASC').where('level >= ?', 100)
-    @events = Event.order('event_timestamp DESC').take(200)
+    @members = Member.order('level DESC, rank ASC, name ASC').where('level >= ?', config.member_min_level)
+    @events = Event.order('event_timestamp DESC').take(config.event_max_items)
     @raids = config.raids
     @progression = Progression.where(:raid => @raids).group_by { |p| p.raid }
     @guild = Guild.find_by(name: config.guild_name)
-    @discord = Discord.order('discord_timestamp DESC').take(3)
+    @discord = Discord.order('discord_timestamp DESC').take(config.discord_max_messages)
   end
 
   private
     def discord
       config = Rails.application.config
+      if config.discord_channel_id == nil or config.discord_key == nil
+        throw 'Skipping discord update due to missing channel or key'
+        return
+      end
       messages = HTTParty.get("https://discordapp.com/api/channels/#{config.discord_channel_id}/messages", headers: {"Authorization" => config.discord_key })
       messages.each do |m|
         Discord.find_or_initialize_by(:message_id => m['id'], :channel_id => m['channel_id']).

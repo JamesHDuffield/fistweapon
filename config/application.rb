@@ -42,12 +42,16 @@ module Fistweapon
         config.amr_url_base = 'http://www.askmrrobot.com/wow/gear/us'
         config.media_url_base = 'http://media.blizzard.com/wow/icons/56'
         config.cache_members = lambda { 1.days.ago }
-        config.cache_events = lambda { 5.minutes.ago }
+        config.cache_events = lambda { 0.minutes.ago }
         config.cache_discord = lambda { 1.minutes.ago }
         config.cache_progression = lambda { 1.days.ago }
 
-        config.discord_channel_id = get_env('DISCORD_CHANNEL_ID')
-        config.discord_key = get_env('DISCORD_KEY')
+        config.event_max_items = 200
+        config.member_min_level = 110
+
+        config.discord_max_messages = 5
+        config.discord_channel_id = ENV['DISCORD_CHANNEL_ID']
+        config.discord_key = ENV['DISCORD_KEY']
       end
     end
 

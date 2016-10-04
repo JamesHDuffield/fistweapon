@@ -4,8 +4,8 @@
   "repository": "https://github.com/JamesHDuffield/fistweapon",
   "keywords": ["rails", "dynamic", "wow"],
   "env": {
-    "DISCORD_CHANNEL_ID": "0",
-    "DISCORD_KEY": "Bot EnterBotKeyHere",
+    "DISCORD_CHANNEL_ID": {"required": false},
+    "DISCORD_KEY": {"required": false},
     "BNET_API_KEY": "EnterBnetApiKeyHere",
     "BNET_REGION": "us",
     "WOW_REALM": "barthilas",
