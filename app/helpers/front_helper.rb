@@ -10,7 +10,10 @@ module FrontHelper
   end
 
   def render_log_link
-    content_tag(:a, 'View Logs', href: "https://www.warcraftlogs.com/guilds/usercalendar/197620")
+    url = Rails.application.config.combat_logs_url
+    if url != nil
+      content_tag(:a, 'View Logs', href: url)
+    end
   end
 
   def realm

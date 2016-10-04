@@ -45,7 +45,9 @@ module Fistweapon
         config.cache_events = lambda { 5.minutes.ago }
         config.cache_discord = lambda { 5.minutes.ago }
         config.cache_progression = lambda { 1.days.ago }
+
         config.google_analytics_tracking_ID = ENV['GOOGLE_ANALYTICS_TID']
+        config.combat_logs_url = ENV['COMBAT_LOGS_URL']
 
         config.event_max_items = 200
         config.member_min_level = 110

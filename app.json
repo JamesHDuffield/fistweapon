@@ -14,6 +14,7 @@
     "WOW_RAIDS": "The Emerald Nightmare",
     "REPORT_USERNAME": "yavo",
     "REPORT_PASSWORD": "EnterPasswordHere",
-    "GOOGLE_ANALYTICS_TID": {"required": false}
+    "GOOGLE_ANALYTICS_TID": {"required": false},
+    "COMBAT_LOGS_URL": {"required": false}
   }
 }

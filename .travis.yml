@@ -17,6 +17,7 @@ env:
     - REPORT_USERNAME="yavo"
     - REPORT_PASSWORD="EnterPasswordHere"
     - GOOGLE_ANALYTICS_TID=null
+    - COMBAT_LOGS_URL="https://www.warcraftlogs.com/guilds/usercalendar/197620"
   matrix:
     - RAILS_ENV=test
 
