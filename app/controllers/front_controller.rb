@@ -92,7 +92,7 @@ class FrontController < ApplicationController
       body = guild.news
       max_timestamp = Event.maximum(:event_timestamp) || 0
       body['news'].each do |n|
-        event_timestamp = Time.at(n['timestamp'] / 1000)
+        event_timestamp = Time.at(n['timestamp'] / 1000 - 3600) # Minus 1 hour for blizz giving us off epoch timestamps
         if event_timestamp > max_timestamp
           a = n.fetch('achievement', {})
           case n['type']

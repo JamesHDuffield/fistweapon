@@ -19,6 +19,7 @@ Modify the options as specified below:
 - WOW_RAIDS: Comma seperated list of raids to display progression for. (e.g 'The Emerald Nightmare,Hellfire Citadel,Firelands')
 - REPORT_USERNAME: Username for authentication moderate reports
 - REPORT_PASSWORD: Password for authentication moderate reports
+- COMBAT_LOGS_URL: Static URL to your guild's combat logs (i.e. Warcraft logs, Ask Mr Robot, World of logs etc)
 
 Click Deploy to create you're new guild website.
 
