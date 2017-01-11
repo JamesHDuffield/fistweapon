@@ -1,4 +1,6 @@
 class Member < ActiveRecord::Base
+  validates :name, :presence => true
+
   def spec_url
     config = Rails.application.config
     if self.icon != nil
