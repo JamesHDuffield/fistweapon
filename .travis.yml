@@ -13,11 +13,11 @@ env:
     - WOW_REALM=barthilas
     - WOW_GUILD="Fist Weapon"
     - WOW_CHARACTER_NAME=Spidr
-    - WOW_RAIDS="The Emerald Nightmare,Hellfire Citadel,Firelands"
+    - WOW_RAIDS="The Emerald Nightmare,Hellfire Citadel"
     - REPORT_USERNAME="yavo"
     - REPORT_PASSWORD="EnterPasswordHere"
     - GOOGLE_ANALYTICS_TID=null
-    - COMBAT_LOGS_URL="https://www.warcraftlogs.com/guilds/usercalendar/197620"
+    - COMBAT_LOGS_URL="https://www.warcraftlogs.com/guilds/129103"
   matrix:
     - RAILS_ENV=test
 
@@ -28,7 +28,7 @@ install:
 - gem install bundler -v "=1.10.6"
 - bundle update
 before_script:
-- bundle exec rake db:create db:schema:load
+- bundle exec rake db:create db:schema:load db:test
 deploy:
   provider: heroku
   on: master
