@@ -17,6 +17,8 @@ class FrontController < ApplicationController
     guild = client.guild({realm: config.realm, guild_name: config.guild_name})
     character = client.character({realm: config.realm, character_name: config.character_name})
 
+    EventUpdateJob.perform_later
+    
     ApiRequest.cache(:discord, config.cache_discord) do
       logger.info "Updating Discord"
       discord
@@ -25,11 +27,6 @@ class FrontController < ApplicationController
     ApiRequest.cache(:guild_members, config.cache_members) do
       logger.info "Updating Guild"
       members(guild)
-    end
-
-    ApiRequest.cache(:guild_news, config.cache_events) do
-      logger.info "Updating News"
-      events(guild)
     end
 
     ApiRequest.cache(:guild_progression, config.cache_progression) do
@@ -86,33 +83,6 @@ class FrontController < ApplicationController
       end
     rescue Exception => e
       logger.error("Guild update error: #{e.message}")
-    end
-
-    def events(guild)
-      body = guild.news
-      Event.order('event_timestamp desc').offset(1000).destroy_all # Ensure we do not keep too much history (Heroku will compain if too much db space used)
-      max_timestamp = Event.maximum(:event_timestamp) || 0
-      body['news'].each do |n|
-        event_timestamp = Time.at(n['timestamp'] / 1000 - 3600) # Minus 1 hour for blizz giving us off epoch timestamps
-        if event_timestamp > max_timestamp
-          a = n.fetch('achievement', {})
-          case n['type']
-            when "itemLoot"
-              title = 'Looted Item'
-            when "itemCrafted"
-              title = 'Crafted Item'
-            when "guildAchievement"
-              title = 'Earned guild achievement'
-            else
-              title = 'Earned achievement'
-          end
-          character_class = Member.find_by(name: n['character']).try(:character_class) || 0
-          Event.find_or_initialize_by(:event_timestamp => event_timestamp, :character => n['character']).
-          update_attributes!(:event_type => n['type'], :title => title, :itemId => n.fetch('itemId', nil), :achievementId => a.fetch('id', nil), :character_class => character_class)
-        end
-      end
-    rescue Exception => e
-      logger.error("Event update error: #{e.message}")
     end
 
     def progression(character)
