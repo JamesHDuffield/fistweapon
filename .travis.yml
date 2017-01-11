@@ -28,7 +28,8 @@ install:
 - gem install bundler -v "=1.10.6"
 - bundle update
 before_script:
-- bundle exec rake db:create db:schema:load db:test
+- bundle exec rake db:create db:schema:load
+- rake db:test
 deploy:
   provider: heroku
   on: master
