@@ -29,7 +29,7 @@ install:
 - bundle update
 before_script:
 - bundle exec rake db:create db:schema:load
-- rake db:test
+- rake test
 deploy:
   provider: heroku
   on: master
