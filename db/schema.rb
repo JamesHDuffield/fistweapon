@@ -12,23 +12,26 @@
 
 ActiveRecord::Schema.define(version: 20160929022401) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "api_requests", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text     "url",        null: false
     t.text     "response"
-    t.index ["url"], name: "index_api_requests_on_url", unique: true
+    t.index ["url"], name: "index_api_requests_on_url", unique: true, using: :btree
   end
 
   create_table "discords", force: :cascade do |t|
     t.datetime "discord_timestamp"
     t.boolean  "pinned"
     t.string   "content"
-    t.integer  "message_id",        limit: 8
+    t.bigint   "message_id"
     t.bigint   "channel_id"
     t.string   "author"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   create_table "events", force: :cascade do |t|

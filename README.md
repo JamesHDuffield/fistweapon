@@ -37,5 +37,5 @@ Navigate to the project directory `cd ..\..\vagrant`
 Retrieve all gems `bundle install`
 Make sure the executables from the gems we just installed (like rails) are available `rbenv rehash`
 Setup database `rake db:create && rake db:migrate`
-Start server `rails server`
+Start server `rails server -b 0.0.0.0`
 
