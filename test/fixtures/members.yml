@@ -2,18 +2,20 @@
 
 one:
   spec: MyString
-  class: 
+  character_class: 1
   name: MyString
   race: 
   gender: 
   level: 
   rank: 
+  icon: 
 
 two:
   spec: MyString
-  class: 
+  character_class: 2
   name: MyString
   race: 
   gender: 
   level: 
   rank: 
+  icon: 

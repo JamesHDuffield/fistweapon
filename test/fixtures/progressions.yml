@@ -9,7 +9,7 @@ one:
   normal_kills: 1
   normal_timestamp: 2016-09-21 13:18:37
   heroic_kills: 1
-  heroic_timestamp: MyString
+  heroic_timestamp: 2016-09-21 13:18:37
   mythic_kills: 1
   mythic_timestamp: 2016-09-21 13:18:37
 
@@ -22,6 +22,6 @@ two:
   normal_kills: 1
   normal_timestamp: 2016-09-21 13:18:37
   heroic_kills: 1
-  heroic_timestamp: MyString
+  heroic_timestamp: 2016-09-21 13:18:37
   mythic_kills: 1
   mythic_timestamp: 2016-09-21 13:18:37
