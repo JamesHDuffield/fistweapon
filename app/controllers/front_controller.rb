@@ -90,6 +90,7 @@ class FrontController < ApplicationController
 
     def events(guild)
       body = guild.news
+      Event.order('event_timestamp desc').offset(1000).destroy_all # Ensure we do not keep too much history (Heroku will compain if too much db space used)
       max_timestamp = Event.maximum(:event_timestamp) || 0
       body['news'].each do |n|
         event_timestamp = Time.at(n['timestamp'] / 1000 - 3600) # Minus 1 hour for blizz giving us off epoch timestamps
