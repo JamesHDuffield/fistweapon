@@ -4,13 +4,13 @@ This project is designed to create a moderation light World of Warcraft guild we
 
 ## Starting your own guild website
 
-Sign up for Heroku, then click the button below.
+[Sign up](https://signup.heroku.com) for Heroku, then click the button below. 
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 Modify the options as specified below:
 - DISCORD_CHANNEL_ID: Ensure development mode is active and obtain your [channel id](https://support.discordapp.com/hc/en-us/articles/206346498-Where-can-I-find-my-server-ID-)
-- DISCORD_KEY: This key will be the [discord bot's](https://discordapp.com/developers/applications/me/create) token, following the format 'Bot <token>'. Ensure that the bot is [registered](https://discordapp.com/developers/docs/topics/oauth2#adding-bots-to-guilds) for permission to the channel referenced above.
+- DISCORD_KEY: This key will be the [discord bot's](https://discordapp.com/developers/applications/me/create) token, following the format 'Bot -------------'. Ensure that the bot is [registered](https://discordapp.com/developers/docs/topics/oauth2#adding-bots-to-guilds) for permission to the channel referenced above.
 - BNET_API_KEY: API key for Blizzard battle.net API. You can apply for a key [here](https://dev.battle.net/member/register).
 - BNET_REGION: Battle.net region. (us, eu, etc)
 - WOW_REALM: World of Warcraft realm/server name
