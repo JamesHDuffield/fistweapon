@@ -39,7 +39,6 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     addressable (2.4.0)
-    api_cache (0.3.0)
     arel (7.1.2)
     autoprefixer-rails (6.5.0)
       execjs
@@ -186,7 +185,6 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
-  api_cache
   battlenet-api
   bootstrap-sass
   byebug

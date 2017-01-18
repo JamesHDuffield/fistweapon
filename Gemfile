@@ -40,9 +40,6 @@ gem 'slim'
 #bootstrap
 gem 'bootstrap-sass' #has to not be bowered for urls to work
 
-#caching
-gem 'api_cache'
-
 #blizz
 gem 'battlenet-api'
 
