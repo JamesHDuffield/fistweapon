@@ -1,3 +1,4 @@
+Delayed::Job.destroy_all
 EventUpdateJob.perform_later
 MemberUpdateJob.perform_later
 DiscordUpdateJob.perform_later
