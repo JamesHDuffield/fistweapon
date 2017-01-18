@@ -6,10 +6,11 @@ class ProgressionUpdateJob < ApplicationJob
   end
 
   def perform(*args)
-    logger.info "Updating Progression"
+    Delayed::Worker.logger.debug("Updating Progression") 
     config = Rails.application.config
     client = Battlenet.WOWClient
     guild = client.guild({realm: config.realm, guild_name: config.guild_name})
+    character = client.character({realm: config.realm, character_name: config.character_name})
     body = character.progression
     prog = body.fetch('progression', {})
     prog.fetch('raids', []).each do |r|
@@ -29,6 +30,6 @@ class ProgressionUpdateJob < ApplicationJob
       end
     end
   rescue Exception => e
-    logger.error("Progression update error: #{e.message}")
+    Delayed::Worker.logger.error("Progression update error: #{e.message}")
   end
 end

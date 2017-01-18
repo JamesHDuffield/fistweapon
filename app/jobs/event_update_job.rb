@@ -6,7 +6,7 @@ class EventUpdateJob < ApplicationJob
   end
 
   def perform(*args)
-    logger.info "Updating Events"
+    Delayed::Worker.logger.debug("Updating Events")
     config = Rails.application.config
     client = Battlenet.WOWClient
     guild = client.guild({realm: config.realm, guild_name: config.guild_name})
@@ -33,7 +33,7 @@ class EventUpdateJob < ApplicationJob
       end
       Event.order('event_timestamp desc').offset(1000).destroy_all # Ensure we do not keep too much history (Heroku will compain if too much db space used)
     rescue Exception => e
-      logger.error("Event update error: #{e.message}")
+      Delayed::Worker.logger.error("Event update error: #{e.message}")
   end
 end
 

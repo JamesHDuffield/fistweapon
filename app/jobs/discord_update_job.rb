@@ -6,7 +6,7 @@ class DiscordUpdateJob < ApplicationJob
   end
 
   def perform(*args)
-    logger.info "Updating Discord"
+    Delayed::Worker.logger.debug("Updating Discord")
     config = Rails.application.config
     if config.discord_channel_id == nil or config.discord_key == nil
       throw 'Skipping discord update due to missing channel or key'
@@ -18,6 +18,6 @@ class DiscordUpdateJob < ApplicationJob
       update_attributes!(:content => m['content'], :author => m['author']['username'], :discord_timestamp => m['timestamp'], :pinned => m['pinned'])
     end
   rescue Exception => e
-    logger.error("Discord update error: #{e.message}")
+    Delayed::Worker.logger.error("Discord update error: #{e.message}")
   end
 end

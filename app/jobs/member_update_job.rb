@@ -6,7 +6,7 @@ class MemberUpdateJob < ApplicationJob
   end
 
   def perform(*args)
-    logger.info "Updating Guild"
+    Delayed::Worker.logger.debug("Updating Guild")
     config = Rails.application.config
     client = Battlenet.WOWClient
     guild = client.guild({realm: config.realm, guild_name: config.guild_name})
@@ -34,6 +34,6 @@ class MemberUpdateJob < ApplicationJob
       update_attributes!(:character_class => c['class'], :race => c['race'], :gender => c['gender'], :level => c['level'], :rank => m['rank'], :spec => s['name'], :icon => s['icon'])
     end
   rescue Exception => e
-    logger.error("Guild update error: #{e.message}")
+    Delayed::Worker.logger.error("Guild update error: #{e.message}")
   end
 end
