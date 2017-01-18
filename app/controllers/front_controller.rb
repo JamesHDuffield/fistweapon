@@ -3,21 +3,21 @@ class FrontController < ApplicationController
   http_basic_authenticate_with name: config.report_username, password: config.report_password, except: :index
 
   def reset_cache
-    ApiRequest.delete_all
-    Member.delete_all
-    Event.delete_all
-    Progression.delete_all
-    Discord.delete_all
+    puts "Starting jobs"
+    # ApiRequest.delete_all
+    # Member.delete_all
+    # Event.delete_all
+    # Progression.delete_all
+    # Discord.delete_all
+    EventUpdateJob.perform_later
+    MemberUpdateJob.perform_later
+    DiscordUpdateJob.perform_later
+    ProgressionUpdateJob.perform_later
     redirect_to action: "index"
   end
 
   def index
     config = Rails.application.config
-
-    EventUpdateJob.perform_later
-    DiscordUpdateJob.perform_later
-    MemberUpdateJob.perform_later
-    ProgressionUpdateJob.perform_later
 
     @members = Member.order('level DESC, rank ASC, name ASC').where('level >= ?', config.member_min_level)
     @events = Event.order('event_timestamp DESC').take(config.event_max_items)

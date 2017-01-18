@@ -1,9 +1,8 @@
 class EventUpdateJob < ApplicationJob
   queue_as :default
-  config = Rails.application.config
   
   after_perform do |job|
-    EventUpdateJob.set(config.cache_events).perform_later
+    EventUpdateJob.set(wait: 5.minute).perform_later
   end
 
   def perform(*args)

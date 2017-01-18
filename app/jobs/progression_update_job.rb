@@ -1,9 +1,8 @@
 class ProgressionUpdateJob < ApplicationJob
   queue_as :default
-  config = Rails.application.config
   
   after_perform do |job|
-    ProgressionUpdateJob.set(config.cache_progression).perform_later
+    ProgressionUpdateJob.set(wait: 12.hours).perform_later
   end
 
   def perform(*args)

@@ -1,9 +1,8 @@
 class MemberUpdateJob < ApplicationJob
   queue_as :default
-  config = Rails.application.config
   
   after_perform do |job|
-    MemberUpdateJob.set(config.cache_member).perform_later
+    MemberUpdateJob.set(wait: 12.hours).perform_later
   end
 
   def perform(*args)

@@ -41,10 +41,6 @@ module Fistweapon
         config.raids = get_env('WOW_RAIDS').split(",")
         config.amr_url_base = 'http://www.askmrrobot.com/wow/gear/us'
         config.media_url_base = 'http://media.blizzard.com/wow/icons/56'
-        config.cache_members = lambda { 1.days.ago }
-        config.cache_events = lambda { 5.minutes.ago }
-        config.cache_discord = lambda { 5.minutes.ago }
-        config.cache_progression = lambda { 1.days.ago }
 
         config.google_analytics_tracking_ID = ENV['GOOGLE_ANALYTICS_TID']
         config.combat_logs_url = ENV['COMBAT_LOGS_URL']
@@ -55,6 +51,7 @@ module Fistweapon
         config.discord_max_messages = 5
         config.discord_channel_id = ENV['DISCORD_CHANNEL_ID']
         config.discord_key = ENV['DISCORD_KEY']
+        config.active_job.queue_adapter = :delayed_job
       end
     end
 

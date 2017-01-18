@@ -1,9 +1,8 @@
 class DiscordUpdateJob < ApplicationJob
   queue_as :default
-  config = Rails.application.config
   
   after_perform do |job|
-    DiscordUpdateJob.set(config.cache_discord).perform_later
+    DiscordUpdateJob.set(wait: 12.hours).perform_later
   end
 
   def perform(*args)
