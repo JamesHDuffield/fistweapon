@@ -1,0 +1,4 @@
+EventUpdateJob.perform_later
+MemberUpdateJob.perform_later
+DiscordUpdateJob.perform_later
+ProgressionUpdateJob.perform_later

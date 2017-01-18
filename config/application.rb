@@ -26,6 +26,7 @@ module Fistweapon
 
       config.report_username = get_env('REPORT_USERNAME')
       config.report_password = get_env('REPORT_PASSWORD')
+      config.active_job.queue_adapter = :delayed_job
     end
 
     Battlenet.configure do |config|
@@ -51,7 +52,6 @@ module Fistweapon
         config.discord_max_messages = 5
         config.discord_channel_id = ENV['DISCORD_CHANNEL_ID']
         config.discord_key = ENV['DISCORD_KEY']
-        config.active_job.queue_adapter = :delayed_job
       end
     end
 

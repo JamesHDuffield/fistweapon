@@ -2,7 +2,7 @@ class EventUpdateJob < ApplicationJob
   queue_as :default
   
   after_perform do |job|
-    EventUpdateJob.set(wait: 5.minute).perform_later
+    EventUpdateJob.set(wait: 5.minutes).perform_later
   end
 
   def perform(*args)

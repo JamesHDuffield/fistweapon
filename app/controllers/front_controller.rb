@@ -4,15 +4,10 @@ class FrontController < ApplicationController
 
   def reset_cache
     puts "Starting jobs"
-    # ApiRequest.delete_all
-    # Member.delete_all
-    # Event.delete_all
-    # Progression.delete_all
-    # Discord.delete_all
-    EventUpdateJob.perform_later
-    MemberUpdateJob.perform_later
-    DiscordUpdateJob.perform_later
-    ProgressionUpdateJob.perform_later
+    Member.delete_all
+    Event.delete_all
+    Progression.delete_all
+    Discord.delete_all
     redirect_to action: "index"
   end
 
