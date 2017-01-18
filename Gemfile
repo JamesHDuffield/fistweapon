@@ -43,11 +43,12 @@ gem 'bootstrap-sass' #has to not be bowered for urls to work
 #blizz
 gem 'battlenet-api'
 
+# Needed for travis
+gem 'rake'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
-  # Needed for travis
-  gem 'rake'
 end
 
 group :development do
