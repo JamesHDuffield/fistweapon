@@ -30,12 +30,12 @@ Make sure you have installed the following plugins:
 vagrant plugin install vagrant-vbguest
 vagrant plugin install vagrant-librarian-chef-nochef
 ```
-
-Then you can `vagrant up`
-Once the vagrant box is provisioned `vagrant ssh`
-Navigate to the project directory `cd ..\..\vagrant`
-Retrieve all gems `bundle install`
-Make sure the executables from the gems we just installed (like rails) are available `rbenv rehash`
-Setup database `rake db:create && rake db:migrate`
-Start server `rails server -b 0.0.0.0`
+  
+Then you can `vagrant up`  
+Once the vagrant box is provisioned `vagrant ssh`  
+Navigate to the project directory `cd ..\..\vagrant`  
+Retrieve all gems `bundle install`  
+Make sure the executables from the gems we just installed (like rails) are available `rbenv rehash`  
+Setup database `rake db:create && rake db:migrate`  
+Start server `rails server -b 0.0.0.0`  
 
