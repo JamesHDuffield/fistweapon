@@ -1,13 +1,8 @@
 - @raids.each do |r|
-  .panel.panel-primary
-    .panel-heading
-      .row
-        .col-sm-6
-          h4.panel-title = r
-        .col-sm-6
-          .pull-right = render_log_link
-
-    .panel-body
+  .box
+    .box-header
+      h4.panel-title = r
+    .box-body.no-padding
       table.table.table-hover
         thead
           tr

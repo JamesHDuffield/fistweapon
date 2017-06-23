@@ -1,15 +1,10 @@
-.panel.panel-primary
-  .panel-heading
-    .row
-      .col-sm-6
-        h4.panel-title Events
-      .col-sm-6
-        .pull-right
-          a#tgreen>(href='#' data-hide-class='.q2') Uncommons
-          ' |
-          a#tblue(href='#' data-hide-class='.q3') Rares
-
-  .panel-body
+.box
+  .box-body.no-padding
+    .box-header
+      .pull-right
+        a#tgreen>(href='#' data-hide-class='.q2') Uncommons
+        ' |
+        a#tblue(href='#' data-hide-class='.q3') Rares
     table.table.table-hover
       tbody
         - @events.each do |e|

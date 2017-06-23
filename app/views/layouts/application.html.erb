@@ -26,8 +26,67 @@
 
   </head>
 
-  <body>
-    <div class="body-content" style="padding: 25px;">
+  <body class="skin-red fixed sidebar-mini">
+    <div class="wrapper">
+      <div class="main-header">
+        <div class="logo">
+          <span class="logo-lg">
+            <i class="fa fa-hand-rock-o"></i>&nbsp;<%= guild_name %>
+          </span>
+          <span class="logo-sm">
+            <i class="fa fa-hand-rock-o"></i>
+          </span>
+        </div>
+        <nav class="navbar navbar-static-top" role="navigation">
+          <a class="sidebar-toggle" data-toggle="offcanvas" href="#" role="button">
+            <span class="sr-only">Toggle navigation</span>
+          </a>
+          <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+          </div>
+        </nav>
+      </div>
+      <div class="main-sidebar">
+        <div class="sidebar">
+          <ul class="sidebar-menu">
+            <li class="header">MENU</li>
+            <li>
+              <a href="<%= url_for(action: 'index', controller: 'members') %>">
+                <i class="fa fa-users"></i>
+                <span>Members</span>
+              </a>
+            </li>
+            <li>
+              <a href="<%= url_for(action: 'index', controller: 'events') %>">
+                <i class="fa fa-bell"></i>
+                <span>Events</span>
+              </a>
+            </li>
+            <li>
+              <a href="<%= url_for(action: 'index', controller: 'progression') %>">
+                <i class="fa fa-trophy"></i>
+                <span>Progression</span>
+              </a>
+            </li>
+            <li class="header">LINKS</li>
+            <li>
+              <a href="https://bist.fistweapon.net">
+                <i class="fa fa-dollar"></i>
+                <span>Best In Slot</span>
+              </a>
+            </li>
+            <li>
+              <a href="<%= combat_logs_url %>">
+                <i class="fa fa-tasks"></i>
+                <span>Combat Logs</span>
+              </a>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="content-wrapper">
       <%= yield %>
     </div>
   </body>

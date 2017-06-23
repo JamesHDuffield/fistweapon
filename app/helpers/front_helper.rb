@@ -9,10 +9,14 @@ module FrontHelper
     end
   end
 
+  def combat_logs_url
+    return Rails.application.config.combat_logs_url
+  end
+
   def render_log_link
-    url = Rails.application.config.combat_logs_url
+    url = combat_logs_url
     if url != nil
-      content_tag(:a, 'View Logs', href: url)
+      content_tag(:a, '', href: url)
     end
   end
 
