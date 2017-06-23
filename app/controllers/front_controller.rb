@@ -44,10 +44,7 @@ class FrontController < ApplicationController
        @percentageProgress = 0
     end
 
-
     @reportCount = Report.count
-
-    @guild = Guild.find_by(name: config.guild_name)
     @discord = Discord.order('discord_timestamp DESC').take(config.discord_max_messages)
   end
 end

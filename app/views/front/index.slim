@@ -1,16 +1,17 @@
 .content
   .row
     .col-lg-6
-      = render partial: "discord"
+      .info-box
+          span.info-box-icon.bg-red
+            i.fa.fa-hand-rock-o
+          .info-box-content
+            .guild-name
+              .gradient = guild_name.upcase
+            .guild-realm = realm.titleize
+            = allegiance
+          
     .col-lg-6
-      .pull-right
-        .guild-name
-          .gradient = guild_name.upcase
-        .guild-realm = realm.titleize
-        = allegiance
-        .guild-tabard
-          canvas#guild-tabard(width="240" height="240" data-ring='horde' data-bg=@guild.background_colour_id data-icon=@guild.icon data-icon-colour=@guild.icon_colour_id data-border=@guild.border data-border-colour=@guild.border_colour_id)
-            .guild-tabard-default.tabard-horde
+      = render partial: "discord"
   .row
     .col-md-6
       .info-box

@@ -1,14 +1,11 @@
 - if @discord.any?
-  .carousel.slide#ticker(data-ride="carousel" data-interval='10000')
-    .carousel-inner(role="listbox")
-      - @discord.each_with_index do |d, i|
-        = content_tag(:div, '', class: i == 0 ? 'item active' : 'item')
-          strong = d.author
-          =< d.content
-
-    a.left.carousel-control(href="#ticker" role="button" data-slide="prev")
-      span.glyphicon.glyphicon-chevron-left(aria-hidden="true")
-      span.sr-only Previous
-    a.right.carousel-control(href="#ticker" role="button" data-slide="next")
-      span.glyphicon.glyphicon-chevron-right(aria-hidden="true")
-      span.sr-only Next
+  .box.direct-chat
+    .box-body
+      .direct-chat-messages
+        - @discord.each_with_index do |d, i|
+          .direct-chat-msg
+            .direct-chat-info.clearfix
+              span.direct-chat-name.pull-left = d.author
+              span.direct-chat-timestamp.pull-right = display_time(d.discord_timestamp)
+            i.direct-chat-img.fa.fa-user-o
+            .direct-chat-text =< d.content

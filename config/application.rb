@@ -49,7 +49,7 @@ module Fistweapon
         config.event_max_items = 200
         config.member_min_level = 110
 
-        config.discord_max_messages = 5
+        config.discord_max_messages = 15
         config.discord_channel_id = ENV['DISCORD_CHANNEL_ID']
         config.discord_key = ENV['DISCORD_KEY']
       end
