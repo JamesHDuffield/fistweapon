@@ -1,4 +1,23 @@
 .content-header
   h1 Members
 .content
-  = render partial: "front/members"
+  .box
+    .box-body.no-padding
+      table.table.table-hover
+        thead
+          tr
+            th Spec
+            th Name
+            th Level
+            th Rank
+            th YR
+        tbody
+          - @members.each do |m|
+            tr
+              td
+                img.wow-icon(src=m.spec_url)
+              td
+                a.c(class="c#{m.character_class}" href="#{m.ask_mr_robot}") = m.name
+              td = m.level
+              td = m.rank_name
+              td = render_label(m)

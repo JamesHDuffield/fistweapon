@@ -29,14 +29,16 @@
   <body class="skin-red fixed sidebar-mini">
     <div class="wrapper">
       <div class="main-header">
-        <div class="logo">
-          <span class="logo-lg">
-            <i class="fa fa-hand-rock-o"></i>&nbsp;<%= guild_name %>
-          </span>
-          <span class="logo-sm">
-            <i class="fa fa-hand-rock-o"></i>
-          </span>
-        </div>
+        <%= link_to root_path do %>
+          <div class="logo">
+            <span class="logo-lg">
+              <i class="fa fa-hand-rock-o"></i>&nbsp;<%= guild_name %>
+            </span>
+            <span class="logo-sm">
+              <i class="fa fa-hand-rock-o"></i>
+            </span>
+          </div>
+        <% end %>
         <nav class="navbar navbar-static-top" role="navigation">
           <a class="sidebar-toggle" data-toggle="offcanvas" href="#" role="button">
             <span class="sr-only">Toggle navigation</span>
@@ -50,23 +52,23 @@
         <div class="sidebar">
           <ul class="sidebar-menu">
             <li class="header">MENU</li>
-            <li>
-              <a href="<%= url_for(action: 'index', controller: 'members') %>">
+            <li class="<%= cp(members_path) %>">
+              <%= link_to members_path do %>
                 <i class="fa fa-users"></i>
                 <span>Members</span>
-              </a>
+              <% end %>
             </li>
-            <li>
-              <a href="<%= url_for(action: 'index', controller: 'events') %>">
+            <li class="<%= cp(events_path) %>">
+              <%= link_to events_path, class: cp(events_path) do %>
                 <i class="fa fa-bell"></i>
                 <span>Events</span>
-              </a>
+              <% end %>
             </li>
-            <li>
-              <a href="<%= url_for(action: 'index', controller: 'progression') %>">
+            <li class="<%= cp(progression_index_path) %>">
+              <%= link_to progression_index_path do %>
                 <i class="fa fa-trophy"></i>
                 <span>Progression</span>
-              </a>
+              <% end %>
             </li>
             <li class="header">LINKS</li>
             <li>
@@ -85,9 +87,9 @@
           </ul>
         </div>
       </div>
-    </div>
-    <div class="content-wrapper">
-      <%= yield %>
+      <div class="content-wrapper">
+        <%= yield %>
+      </div>
     </div>
   </body>
 </html>

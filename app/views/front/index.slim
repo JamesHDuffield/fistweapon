@@ -1,4 +1,47 @@
-.content-header
-  h1 Members
 .content
-  = render partial: "members"
+  .row
+    .col-lg-6
+      = render partial: "discord"
+    .col-lg-6
+      .pull-right
+        .guild-name
+          .gradient = guild_name.upcase
+        .guild-realm = realm.titleize
+        = allegiance
+        .guild-tabard
+          canvas#guild-tabard(width="240" height="240" data-ring='horde' data-bg=@guild.background_colour_id data-icon=@guild.icon data-icon-colour=@guild.icon_colour_id data-border=@guild.border data-border-colour=@guild.border_colour_id)
+            .guild-tabard-default.tabard-horde
+  .row
+    .col-md-6
+      .info-box
+        span.info-box-icon.bg-red
+          i.fa.fa-users
+        .info-box-content
+          span.info-box-text Characters
+          span.info-box-number = @memberCount
+    .col-md-6
+      .info-box.bg-red
+        span.info-box-icon
+          i.fa.fa-trophy
+        .info-box-content
+          span.info-box-text = @raidName
+          span.info-box-number = @difficulty
+          .progress
+            .progress-bar.progress-bar-aqua(style="width:=@percentageProgress%;")
+          span.progress-description = "#{@kills}/#{@total} Bosses"
+  .row
+    .col-md-6
+      .info-box
+        span.info-box-icon.bg-red
+          i.fa.fa-bell
+        .info-box-content
+          span.info-box-text Items dropped in last 24 hours
+          span.info-box-number = @eventCount
+    .col-md-6
+      .info-box
+        span.info-box-icon.bg-red
+          i.fa.fa-deaf
+        .info-box-content
+          span.info-box-text Reports
+          span.info-box-number = @reportCount
+

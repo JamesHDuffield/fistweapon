@@ -14,10 +14,39 @@ class FrontController < ApplicationController
   def index
     config = Rails.application.config
 
-    @members = Member.order('level DESC, rank ASC, name ASC').where('level >= ?', config.member_min_level)
-    @events = Event.order('event_timestamp DESC').take(config.event_max_items)
-    @raids = config.raids
-    @progression = Progression.where(:raid => @raids).group_by { |p| p.raid }
+    @memberCount = Member.where('level >= ?', config.member_min_level).count
+
+    @eventCount = Event.where('event_timestamp >= ?', Time.now - 1.day).count
+    
+    raids = config.raids
+    @raidName = raids.first()
+    progression = Progression.where(:raid => @raidName)
+
+    @total = progression.count
+    mythic = progression.where('mythic_kills > 0').count
+    if mythic > 0
+      @difficulty = 'Mythic'
+      @kills = mythic
+    else
+      heroic = progression.where('heroic_kills > 0').count
+      if heroic > 0
+        @difficulty = 'Heroic'
+        @kills = heroic
+      else
+        @difficulty = 'Normal'
+        @kills = progression.where('normal_kills > 0').count
+      end
+    end
+
+    if @total > 0
+      @percentageProgress = @kills * 100 / @total
+    else
+       @percentageProgress = 0
+    end
+
+
+    @reportCount = Report.count
+
     @guild = Guild.find_by(name: config.guild_name)
     @discord = Discord.order('discord_timestamp DESC').take(config.discord_max_messages)
   end

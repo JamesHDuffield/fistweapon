@@ -18,4 +18,19 @@ module ApplicationHelper
     end
     return darken_color(g.background_colour.last(6))
   end
+
+  def combat_logs_url
+    return Rails.application.config.combat_logs_url
+  end
+
+  def render_log_link
+    url = combat_logs_url
+    if url != nil
+      content_tag(:a, '', href: url)
+    end
+  end
+
+  def cp(path)
+    "active" if current_page?(path)
+  end
 end

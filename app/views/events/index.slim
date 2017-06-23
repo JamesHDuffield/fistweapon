@@ -1,4 +1,19 @@
 .content-header
   h1 Events
 .content
-  = render partial: "front/events"
+  .box
+    .box-header
+      .pull-right
+        a#tgreen>(href='#' data-hide-class='.q2') Uncommons
+        ' |
+        a#tblue(href='#' data-hide-class='.q3') Rares
+    .box-body.no-padding
+      table.table.table-hover
+        tbody
+          - @events.each do |e|
+            tr
+              td
+                a(class="c c#{e.character_class}" href="#{e.ask_mr_robot}") = e.character
+              td = display_time(e.event_timestamp)
+              td = e.title
+              td = render_type(e)
