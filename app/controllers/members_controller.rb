@@ -8,6 +8,7 @@ class MembersController < ApplicationController
   end
 
   def index
+    config = Rails.application.config
     @members = Member.order('level DESC, rank ASC, name ASC').where('level >= ?', config.member_min_level)
   end
 
