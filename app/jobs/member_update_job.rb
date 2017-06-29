@@ -1,10 +1,6 @@
 class MemberUpdateJob < ApplicationJob
   queue_as :default
   
-  after_perform do |job|
-    MemberUpdateJob.set(wait: 12.hours).perform_later
-  end
-
   def perform(*args)
     Delayed::Worker.logger.debug("Updating Guild")
     config = Rails.application.config

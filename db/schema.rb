@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170118021140) do
+ActiveRecord::Schema.define(version: 20170629030340) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20170118021140) do
     t.string   "queue"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "cron"
     t.index ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
   end
 

@@ -8,6 +8,10 @@ class FrontController < ApplicationController
     Event.delete_all
     Progression.delete_all
     Discord.delete_all
+    EventUpdateJob.perform_later
+    MemberUpdateJob.perform_later
+    DiscordUpdateJob.perform_later
+    ProgressionUpdateJob.perform_later
     redirect_to action: "index"
   end
 

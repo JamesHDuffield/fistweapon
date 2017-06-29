@@ -65,3 +65,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Delayed jobs for heroku
 gem 'delayed_job_active_record'
+gem 'delayed_cron_job'

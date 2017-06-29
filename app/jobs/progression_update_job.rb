@@ -1,10 +1,6 @@
 class ProgressionUpdateJob < ApplicationJob
   queue_as :default
   
-  after_perform do |job|
-    ProgressionUpdateJob.set(wait: 12.hours).perform_later
-  end
-
   def perform(*args)
     Delayed::Worker.logger.debug("Updating Progression") 
     config = Rails.application.config
