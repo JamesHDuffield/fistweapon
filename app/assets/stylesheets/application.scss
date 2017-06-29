@@ -22,44 +22,8 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-body {
-  font-family: 'Arial Narrow', arial;
-}
-
-.panel-primary {
-  border-color: #0f1415;
-}
-
-.panel-primary .panel-heading {
-  border-color: #0f1415;
-}
-
-.panel-body {
-  background-color: white;
-
-  .form-control {
-    margin-bottom: 5px;
-  }
-}
-
-.panel-heading {
-
-  background-image: image-url('brushed-alum.png');
-
-  a, a:hover, a:visited, a:focus {
-    color: white;
-    font-size: 12px;
-
-    &.striked {
-      text-decoration: line-through;
-    }
-  }
-
-  .col-sm-1, .col-sm-2 {
-    text-align: right;
-  }
-
-  ul.dropdown-menu a {
-    color: black;
+@media (min-width: 768px) {
+  .sidebar-mini.sidebar-collapse .sidebar .user-panel {
+      display: none!important;
   }
 }
