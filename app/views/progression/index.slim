@@ -9,14 +9,14 @@
         table.table.table-hover
           thead
             tr
-              th Boss
-              th Normal
-              th Heroic
-              th Mythic
+              th.col-xs-6 Boss
+              th.col-xs-2.text-center Normal
+              th.col-xs-2.text-center Heroic
+              th.col-xs-2.text-center Mythic
           tbody
             - @progression.fetch(r, []).each do |b|
               tr
-                td = b.boss
-                td = b.normal_kills
-                td = b.heroic_kills
-                td = b.mythic_kills
+                td.col-xs-6 = b.boss
+                td.col-xs-2.text-center = b.normal_kills
+                td.col-xs-2.text-center = b.heroic_kills
+                td.col-xs-2.text-center = b.mythic_kills
