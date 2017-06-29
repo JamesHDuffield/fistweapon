@@ -28,7 +28,7 @@
           span.info-box-text = @raidName
           span.info-box-number = @difficulty
           .progress
-            .progress-bar.progress-bar-aqua(style="width:=@percentageProgress%;")
+            .progress-bar.progress-bar-aqua(style="width:#{@percentageProgress}%;")
           span.progress-description = "#{@kills}/#{@total} Bosses"
   .row
     .col-md-6
