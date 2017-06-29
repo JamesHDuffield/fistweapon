@@ -1,29 +1,16 @@
 = form_for @report do |f|
-  .panel.panel-primary
-    .panel-heading
-      .row
-        .col-sm-10
-          h4.panel-title Create Reports
-        .col-sm-2
-          button.btn.btn-default.btn-xs type="submit" Save
-    .panel-body
-      .row
-        .col-md-2
-          = f.label :character
-        .col-md-10
-          = f.collection_select :character, @members, :name, :name, {}, {:class => 'form-control'}
-      .row
-        .col-md-2
-          = f.label :title
-        .col-md-10
-          = f.text_field :title, :class => 'form-control', :placeholder => 'Title of write up'
-      .row
-        .col-md-2
-          = f.label :content
-        .col-md-10
-          = f.text_area :content, :class => 'form-control',  :placeholder => 'What happened'
-      .row
-        .col-md-2
-          strong Dragon Kill Points (DKP)
-        .col-md-10
-          = f.number_field :dkp, :class => 'form-control', :placeholder => 'e.g. 10 or -50'
+  .box-body
+    .form-group
+      label = f.label :character
+      = f.collection_select :character, @members, :name, :name, {}, {:class => 'form-control'}
+    .form-group
+      label = f.label :title
+      = f.text_field :title, :class => 'form-control', :placeholder => 'Title of write up'
+    .form-group
+      label = f.label :content
+      = f.text_area :content, :class => 'form-control',  :placeholder => 'What happened'
+    .form-group
+      label Dragon Kill Points (DKP)
+      = f.number_field :dkp, :class => 'form-control', :placeholder => 'e.g. 10 or -50'
+  .box-footer
+    button.btn.btn-danger type="submit" Save
