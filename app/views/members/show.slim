@@ -32,5 +32,7 @@
                 .row
                   .col-md-6 = link_to raw("<i class='glyphicon glyphicon-pencil'></i>"), edit_report_path(:id => r.id)
                   .col-md-6 = link_to raw("<i class='glyphicon glyphicon-remove'></i>"), report_path(:id => r.id), method: :delete, data: { confirm: 'Are you sure want to delete this report?' }
-    .box-footer
-      = link_to raw('<i class="glyphicon glyphicon-chevron-left"></i> Back'), root_path
+  = link_to root_path
+    button.btn.btn-warning type="button" 
+      <i class='glyphicon glyphicon-chevron-left'></i>
+      = " Back"
