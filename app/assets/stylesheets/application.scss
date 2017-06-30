@@ -23,7 +23,24 @@
 @import "bootstrap";
 
 @media (min-width: 768px) {
-  .sidebar-mini.sidebar-collapse .sidebar .user-panel {
-      display: none!important;
+  .sidebar-mini .sidebar .user-panel {
+    height: 265px;
+    transition: 0.3s ease-in-out height;
+    .guild-tabard {
+      transform-origin: top left;
+      transition: 0.3s ease-in-out transform;
+    }
   }
+
+  .sidebar-mini.sidebar-collapse .sidebar .user-panel {
+      height: 50px;
+      .guild-tabard { 
+        transform: scale(0.15);  
+      }
+  }
+  
+}
+
+a.sidebar-toggle {
+  text-decoration: none !important;
 }
