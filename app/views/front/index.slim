@@ -45,4 +45,18 @@
         .info-box-content
           span.info-box-text Reports
           span.info-box-number = @reportCount
+  
+  .row
+    .col-md-12
+      .box.box-solid
+        .box-header.with-border
+          i.fa.fa-deaf
+          h3.box-title = "Latest Report - #{@latestReport.title}"
+        .box-body.clearfix
+          blockquote
+            h6 = " Dear #{@latestReport.character}, "
+            h6 = @latestReport.content
+            small
+              cite Yavo
+              
 

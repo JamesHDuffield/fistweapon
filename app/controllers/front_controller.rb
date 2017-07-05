@@ -50,5 +50,8 @@ class FrontController < ApplicationController
 
     @reportCount = Report.count
     @discord = Discord.order('discord_timestamp DESC').take(config.discord_max_messages)
+
+    @latestReport = Report.last
+
   end
 end
