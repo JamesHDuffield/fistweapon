@@ -10,6 +10,11 @@ class MembersController < ApplicationController
   def index
     config = Rails.application.config
     @members = Member.order('level DESC, rank ASC, name ASC').where('level >= ?', config.member_min_level)
+
+    @classCounts = [];
+    for i in 1..12
+      @classCounts.push(@members.where('character_class = ?', i).count)
+    end
   end
 
   private

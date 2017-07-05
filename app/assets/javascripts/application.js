@@ -17,4 +17,5 @@
 //= require bootstrap-sprockets
 //= require bootstrap
 //= require app
+//= require Chart.min
 //= require_tree .
