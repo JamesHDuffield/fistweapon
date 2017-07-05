@@ -2,11 +2,11 @@ class MemberUpdateJob < ApplicationJob
   queue_as :default
   
   def perform(*args)
+    Delayed::Worker.logger = Logger.new(File.join(Rails.root, 'log', 'dj.log'))
     Delayed::Worker.logger.debug("Updating Guild")
     config = Rails.application.config
     client = Battlenet.WOWClient
     guild = client.guild({realm: config.realm, guild_name: config.guild_name})
-    character = client.character({realm: config.realm, character_name: config.character_name})
     body = guild.members
     e = body['emblem']
     Guild.find_or_initialize_by(:name => body['name'], :realm => body['realm']).
@@ -21,13 +21,25 @@ class MemberUpdateJob < ApplicationJob
       :border_colour => e['borderColor'],
       :border_colour_id => e['borderColorId'],
       :background_colour => e['backgroundColor'],
-      :background_colour_id => e['backgroundColorId'],
+      :background_colour_id => e['backgroundColorId']
     )
     body['members'].each do |m|
       c = m.fetch('character', {})
       s = c.fetch('spec', {})
+      char = client.character({realm: config.realm, character_name: c['name']})
+      profile = char.profile
+      last_mod = Time.at(profile['lastModified'] / 1000 - 3600)
       Member.find_or_initialize_by(:name => c['name']).
-      update_attributes!(:character_class => c['class'], :race => c['race'], :gender => c['gender'], :level => c['level'], :rank => m['rank'], :spec => s['name'], :icon => s['icon'])
+      update_attributes!(
+        :character_class => c['class'],
+        :race => c['race'],
+        :gender => c['gender'], 
+        :level => c['level'],
+        :rank => m['rank'],
+        :spec => s['name'],
+        :icon => s['icon'],
+        :last_modified => last_mod
+      )
     end
   rescue Exception => e
     Delayed::Worker.logger.error("Guild update error: #{e.message}")

@@ -5,7 +5,7 @@
     .col-md-6.text-center
       .box
         .box-body
-          = content_tag :div, class: "chart_information", data: {classcounts: @classCounts} do
+          = content_tag :div, class: "chart_information", data: {classcounts: @classCounts, raceCounts: @raceCounts} do
           canvas(id='pieChart')
   .row
     .col-md-12
@@ -19,6 +19,7 @@
                 th Level
                 th Rank
                 th YR
+                th Last Active
             tbody
               - @members.each do |m|
                 tr
@@ -29,3 +30,4 @@
                   td = m.level
                   td = m.rank_name
                   td = render_label(m)
+                  td = "#{time_ago_in_words(m.last_modified)} ago"

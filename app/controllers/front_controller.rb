@@ -18,7 +18,7 @@ class FrontController < ApplicationController
   def index
     config = Rails.application.config
 
-    @memberCount = Member.where('level >= ?', config.member_min_level).count
+    @memberCount = Member.where('level >= ?', config.member_min_level).where('last_modified > ?', Time.now - 30.days).count
 
     @eventCount = Event.where('event_timestamp >= ?', Time.now - 1.day).count
     
