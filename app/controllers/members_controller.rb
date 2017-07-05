@@ -16,11 +16,11 @@ class MembersController < ApplicationController
       @classCounts.push(@members.where('character_class = ?', i).count)
     end
 
-    @raceCounts = [2, 5, 6, 8, 9, 10, 26]
+    @raceCounts = []
     @raceNames = ['Orc', 'Undead', 'Tauren', 'Troll', 'Goblin', 'Blood Elf', 'Pandaren']
     #races = ['Human', 'Orc', 'Dwarf', 'Night Elf', 'Undead', 'Tauren', 'Gnome', 'Troll', 'Goblin', 'Blood Elf', 'Draenei', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', 'Worgen', '?', 'Pandaren (Neutral)', 'Pandaren', 'Pandaren']
     
-    for i in 1..26
+    for i in [2, 5, 6, 8, 9, 10, 26]
       @raceCounts.push(@members.where('race = ?', i).count)
     end
 
