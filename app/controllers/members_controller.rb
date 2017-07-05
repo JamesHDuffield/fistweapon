@@ -9,16 +9,19 @@ class MembersController < ApplicationController
 
   def index
     config = Rails.application.config
-    @members = Member.order('level DESC, rank ASC, last_modified DESC, name ASC').where('level >= ?', config.member_min_level).where('last_modified > ?', Time.now - 30.days)
+    @members = Member.order('last_modified DESC, level DESC, rank ASC, name ASC').where('level >= ?', config.member_min_level).where('last_modified > ?', Time.now - 30.days)
 
-    @classCounts = [];
+    @classCounts = []
     for i in 1..12
       @classCounts.push(@members.where('character_class = ?', i).count)
     end
 
-    @raceCount = [];
+    @raceCounts = [2, 5, 6, 8, 9, 10, 26]
+    @raceNames = ['Orc', 'Undead', 'Tauren', 'Troll', 'Goblin', 'Blood Elf', 'Pandaren']
+    #races = ['Human', 'Orc', 'Dwarf', 'Night Elf', 'Undead', 'Tauren', 'Gnome', 'Troll', 'Goblin', 'Blood Elf', 'Draenei', '?', '?', '?', '?', '?', '?', '?', '?', '?', '?', 'Worgen', '?', 'Pandaren (Neutral)', 'Pandaren', 'Pandaren']
+    
     for i in 1..26
-      @raceCount.push(@members.where('race = ?', i).count)
+      @raceCounts.push(@members.where('race = ?', i).count)
     end
 
   end

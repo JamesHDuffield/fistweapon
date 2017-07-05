@@ -35,3 +35,26 @@ $ ->
         }
     }
     pieChart = new Chart(pieChartCanvas, pieOptions)
+
+
+    raceCounts = $('.chart_information').data('racecounts')
+    console.log(raceCounts)
+    races = $('.chart_information').data('racenames')
+    barChartCanvas = $('#barChart').get(0).getContext('2d')
+    BarData = {
+        datasets: [{
+            data: raceCounts
+        }],
+        labels: races,
+    }
+    BarOptions = {
+        type: 'bar',
+        data: BarData,
+        options: {
+            maintainAspectRatio: false,
+            legend: {
+                display: false
+            }
+        }
+    }
+    BarChart = new Chart(barChartCanvas, BarOptions)

@@ -2,11 +2,16 @@
   h1 Members
 .content
   .row
+    = content_tag :div, class: "chart_information", data: {classcounts: @classCounts, racecounts: @raceCounts, racenames: @raceNames} do
     .col-md-6.text-center
       .box
-        .box-body
-          = content_tag :div, class: "chart_information", data: {classcounts: @classCounts, raceCounts: @raceCounts} do
+        .box-body.fixed-height-320
           canvas(id='pieChart')
+    .col-md-6.text-center
+      .box
+        .box-body.fixed-height-320
+          canvas(id='barChart')
+        
   .row
     .col-md-12
       .box

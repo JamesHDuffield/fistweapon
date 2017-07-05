@@ -26,20 +26,24 @@ class MemberUpdateJob < ApplicationJob
     body['members'].each do |m|
       c = m.fetch('character', {})
       s = c.fetch('spec', {})
-      char = client.character({realm: config.realm, character_name: c['name']})
-      profile = char.profile
-      last_mod = Time.at(profile['lastModified'] / 1000 - 3600)
-      Member.find_or_initialize_by(:name => c['name']).
-      update_attributes!(
-        :character_class => c['class'],
-        :race => c['race'],
-        :gender => c['gender'], 
-        :level => c['level'],
-        :rank => m['rank'],
-        :spec => s['name'],
-        :icon => s['icon'],
-        :last_modified => last_mod
-      )
+      begin
+        char = client.character({realm: config.realm, character_name: c['name']})
+        profile = char.profile
+        last_mod = Time.at(profile['lastModified'] / 1000 - 3600)
+        Member.find_or_initialize_by(:name => c['name']).
+        update_attributes!(
+          :character_class => c['class'],
+          :race => c['race'],
+          :gender => c['gender'], 
+          :level => c['level'],
+          :rank => m['rank'],
+          :spec => s['name'],
+          :icon => s['icon'],
+          :last_modified => last_mod
+        )
+      rescue Exception => e
+        Delayed::Worker.logger.error("Member fetch failed: #{e.message}")
+      end
     end
   rescue Exception => e
     Delayed::Worker.logger.error("Guild update error: #{e.message}")
